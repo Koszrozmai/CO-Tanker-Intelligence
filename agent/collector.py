@@ -143,12 +143,12 @@ def provenance(src):
 
 # Prioritize deck, chemical/product tanker and navigational content, not generic viral news.
 CO_TERMS = re.compile(
-    r'\\b(tanker|chemical|cargo|marpol|solas|sire|cdi|vetting|psc|port.state|'
+    r'\b(tanker|chemical|cargo|marpol|solas|sire|cdi|vetting|psc|port.state|'
     r'mooring|pilotage|navigation|ecdis|gmdss|ballast|bunkering|vessel|'
     r'ship|shipping|maritime|seafarer|crew|master|bridge|enclosed.space|'
     r'terminal|collision|grounding|oil.spill|pollution|inert.gas|tank.clean|'
     r'prewash|cargo.pump|safety|incident|accident|stcw|inspec|piracy|'
-    r'port|container|fire|lifeboat|anchor|risk.assess|training)\\b', re.I)
+    r'port|container|fire|lifeboat|anchor|risk.assess|training)\b', re.I)
 def relevant_to_co(title, source):
     if source.get('source_class', 'regulator') in ('regulator', 'industry_body'):
         return True
