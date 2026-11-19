@@ -1,5 +1,5 @@
 /* CO Tanker Intelligence v1.9.0 - offline-first, update-aware app shell */
-const CACHE='co-tanker-intelligence-seaglass-20261119-1';
+const CACHE='co-tanker-intelligence-seaglass-20261119-3';
 const ROOT=new URL('./',self.registration.scope);
 const PATHS=['./','./index.html','./manifest.webmanifest','./styles.css','./sea_glass.js','./icons/icon128.png','./icons/icon192.png','./icons/icon512.png','./sire_training.js','./sire_p1a.js','./sire_p1b.js','./sire_p1c.js','./sire_p1d.js','./sire_p1e.js','./sire_p2a.js','./sire_p2b.js','./sire_p2c.js','./sire_p2d.js'];
 const SET=new Set(PATHS.map(p=>new URL(p,ROOT).pathname));
@@ -27,6 +27,13 @@ self.addEventListener('fetch',event=>{
     return await cache.match(event.request,{ignoreSearch:true})||await cache.match(new URL('./index.html',ROOT));
    }
   }
-  return await cache.match(event.request,{ignoreSearch:true})||fetch(event.request);
+  // Update JavaScript, CSS and manifest online; cached shell remains offline fallback.
+  try {
+    const response=await fetch(event.request,{cache:'no-cache'});
+    if(response.ok)await cache.put(event.request,response.clone());
+    return response;
+  }catch{
+    return await cache.match(event.request,{ignoreSearch:true})||Response.error();
+  }
  })());
 });
