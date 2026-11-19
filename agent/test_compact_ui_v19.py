@@ -35,7 +35,7 @@ class TestCompactUI(unittest.TestCase):
     def test_mobile_has_one_navigation(self):
         css = (ROOT/"docs"/"styles.css").read_text(encoding="utf-8")
         self.assertIn(".sidebar .main-nav{display:none!important}", css)
-        self.assertIn(".sidebar .mobile-module-jump{display:flex!important}", css)
+        self.assertIn(".sidebar .mobile-module-jump{display:flex!important;", css)
         self.assertIn("max-width:900px", css)
     def test_original_link_remains(self):
         js = (ROOT/"docs"/"always_on_ui.js").read_text(encoding="utf-8")
