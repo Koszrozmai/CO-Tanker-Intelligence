@@ -257,24 +257,109 @@
  .watch-tools #watchMarkAll{grid-column:1}
  .watch-actions .watch-source-link{flex-basis:100%}
 }
+
+/* UI v2.0 — compact reading-first layout. Progressive disclosure preserves every control. */
+.main-content{max-width:1230px;padding-top:20px}
+.sidebar{width:224px;min-width:224px}
+.sidebar .ship-profile{margin:0 5px 13px;padding:9px 10px}
+.sidebar .sidebar-bottom .side-topics,.sidebar .sidebar-bottom .side-label{display:none}
+.sidebar .sidebar-bottom .divider{margin:12px 0}
+.nav-item{font-weight:650;line-height:1.35}
+.nav-more>summary{font-size:13px}
+.topbar{min-height:68px;padding-top:12px;padding-bottom:12px}
+.topbar h1{font-size:21px}
+.hero{min-height:0;background:#132c3b;border-color:#335261;box-shadow:none;padding:16px 20px;margin:0 0 14px}
+.hero h2{font-size:clamp(20px,2.1vw,27px);margin:3px 0 5px;letter-spacing:-.025em}
+.hero p{max-width:none;margin:0 0 10px;font-size:12px;line-height:1.45}
+.hero-graphic{display:none}
+.hero-overline{font-size:10px;letter-spacing:.1em}
+.hero-buttons{gap:8px}
+.hero-buttons .button-primary,.hero-buttons .button-ghost{min-height:39px;padding:8px 12px;font-size:12px}
+.metrics{grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.metric{padding:11px 14px;border-color:#2c4557;background:#112235}
+.metric strong{font-size:27px;line-height:1.15;margin:5px 0 0}
+.metric-label{font-size:10px;letter-spacing:.03em}
+.metric small{font-size:10px}
+.quick-launch{gap:10px;margin-top:12px}
+.launch-card{padding:11px 13px;min-height:64px}
+.launch-card small{font-size:11px;line-height:1.35}
+.section-heading{margin:20px 0 10px}
+.section-heading h2{font-size:19px}
+.watch-overview{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:12px 15px!important;margin-bottom:14px}
+.watch-overview p{margin:3px 0 0}
+.watch-overview .button-outline{min-height:39px}
+.briefing-preview{margin:0 0 15px}
+.briefing-preview .section-heading{margin:0 0 9px;align-items:center}
+.briefing-preview .section-heading a{font-size:12px;color:#a4f1de;text-decoration:none;font-weight:750}
+.watch-preview-list{display:grid;gap:8px}
+.briefing-preview-item{position:relative;background:#142739;border:1px solid #365164;border-radius:10px;padding:12px 15px;transition:border-color .15s,background .15s}
+.briefing-preview-item:hover,.briefing-preview-item:focus-within{border-color:#8adccb;background:#193246}
+.briefing-preview-meta{font-size:11px;color:#c0d3df;font-weight:630;margin-bottom:4px}
+.briefing-preview-headline{font-size:15px;line-height:1.4;letter-spacing:-.01em;margin:0;font-weight:760}
+.briefing-preview-headline a{color:#effffb;text-decoration:none}
+.briefing-preview-headline a:hover{text-decoration:underline}
+.briefing-preview-summary{margin:4px 0 0;color:#c1d0db;font-size:12px;line-height:1.45;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.briefing-preview-empty{padding:14px;border:1px dashed #406075;border-radius:9px;color:#bcd1db}
+.watch-study-more{margin-top:3px;background:#102233;border:1px solid #385365;border-radius:11px;padding:0 12px 12px}
+.watch-study-more>summary,.feed-filters-more>summary{cursor:pointer;list-style:none;font-size:13px;font-weight:750;min-height:44px;display:flex;align-items:center;color:#a8e8dc}
+.watch-study-more>summary::-webkit-details-marker,.feed-filters-more>summary::-webkit-details-marker{display:none}
+.watch-study-more>summary:after,.feed-filters-more>summary:after{content:"▾";margin-left:auto;color:#a8e8dc}
+.watch-study-more[open]>summary:after,.feed-filters-more[open]>summary:after{content:"▴"}
+.filters-simple{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.filters-simple .search-input{flex:1 1 340px;max-width:none}
+.filters-simple .toggle-checkbox{font-size:12px;min-height:38px}
+.feed-filters-more{flex:0 0 auto;border:1px solid #375667;background:#142a3c;border-radius:9px;padding:0 10px;min-width:155px}
+.feed-filters-more>summary{min-height:39px}
+.feed-filters-panel{display:flex;gap:9px;flex-wrap:wrap;padding:3px 0 10px}
+.feed-filters-panel select{min-width:160px;flex:1}
+.filters-simple .feed-filters-more[open]{flex:1 1 100%}
+.watch-card{border-color:#344e60}
+.watch-card h3{line-height:1.4}
+.watch-actions .watch-source-link{min-height:43px}
+button:focus-visible,a:focus-visible,select:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #8ce0cd;outline-offset:2px}
+@media(max-width:900px){
+ .main-content{padding-top:12px!important}
+ .topbar{padding:9px 12px;min-height:54px}
+ .hero{padding:13px 14px!important}
+ .hero h2{font-size:21px!important}
+ .hero-overline{font-size:9px}
+ .metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .metric{padding:10px 12px!important}
+ .metric strong{font-size:24px}
+ .watch-overview{padding:10px 12px!important;flex-wrap:wrap}
+ .briefing-preview-headline{font-size:15px}
+ .briefing-preview-item{padding:12px}
+ .watch-study-more{padding:0 10px 10px}
+ .filters-simple .search-input{flex:1 1 100%}
+ .filters-simple .feed-filters-more{flex:1 1 100%}
+ .feed-filters-panel select{width:100%;flex:1 1 100%}
+}
+@media(max-width:490px){
+ .hero-buttons{display:grid;grid-template-columns:1fr 1fr}
+ .hero-buttons .button-ghost:last-child{grid-column:1/-1}
+ .watch-overview .button-outline{width:100%}
+ .briefing-preview-summary{-webkit-line-clamp:2}
+ .filters-simple .toggle-checkbox{min-height:38px}
+}
+
 </style><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/icon192.png"></head>
 <body>
 <div class="app">
  <aside class="sidebar">
   <div class="brand"><div class="brand-icon">✳</div><div><strong>CO INTELLIGENCE</strong><small>TANKER REGULATORY WATCH</small></div></div>
   <div class="ship-profile"><span class="pill-dot"></span> CHEMICAL TANKERS <small>EUROPE FIRST · WORLDWIDE</small></div>
-  <label class="mobile-module-jump" for="mobileJump">OPEN MODULE <select id="mobileJump" aria-label="Jump to module"><option value="overview">Overview</option><option value="technical">Technical operations</option><option value="inspections">Inspection readiness</option><option value="academy">CO Academy</option><option value="practice">Inspection simulator & AI handoff</option><option value="watch">Always-On Watch</option><option value="feed">News feed</option><option value="saved">Saved & notes</option><option value="learning">Knowledge centre</option><option value="sources">Settings & backup</option></select></label>
+  <label class="mobile-module-jump" for="mobileJump">OPEN MODULE <select id="mobileJump" aria-label="Jump to module"><option value="overview">Pulpit</option><option value="technical">Technika i szkolenia</option><option value="inspections">Inspekcje</option><option value="academy">Akademia CO</option><option value="practice">Trening inspekcyjny i AI</option><option value="watch">Aktualności</option><option value="feed">Archiwum informacji</option><option value="saved">Zapisane i notatki</option><option value="learning">Baza wiedzy</option><option value="sources">Ustawienia i kopia danych</option></select></label>
   <nav class="main-nav" id="nav" aria-label="Moduły aplikacji">
-<button class="nav-item active" data-page="overview"><span>◫</span> Overview</button>
-<button class="nav-item" data-page="watch"><span>◉</span> Always-On Watch</button>
-<button class="nav-item" data-page="technical"><span>⚙</span> Technical training</button>
-<button class="nav-item" data-page="inspections"><span>☑</span> Inspection readiness</button>
-<button class="nav-item" data-page="academy"><span>✦</span> CO Academy & routines</button>
-<details class="nav-more" id="navMore"><summary>Więcej modułów <span aria-hidden="true">⌄</span></summary><div class="nav-more-list"><button class="nav-item" data-page="feed"><span>≡</span> Intelligence feed <i id="navUnread"></i></button>
-<button class="nav-item" data-page="saved"><span>◇</span> Saved & notes</button>
-<button class="nav-item" data-page="practice"><span>◈</span> Inspector practice & AI</button>
-<button class="nav-item" data-page="learning"><span>▤</span> Knowledge centre</button>
-<button class="nav-item" data-page="sources"><span>◉</span> Sources & settings</button></div></details></nav>
+<button class="nav-item active" data-page="overview"><span>◫</span> Pulpit</button>
+<button class="nav-item" data-page="watch"><span>◉</span> Aktualności</button>
+<button class="nav-item" data-page="technical"><span>⚙</span> Technika i szkolenia</button>
+<button class="nav-item" data-page="inspections"><span>☑</span> Inspekcje</button>
+<button class="nav-item" data-page="academy"><span>✦</span> Akademia CO</button>
+<details class="nav-more" id="navMore"><summary>Więcej modułów <span aria-hidden="true">⌄</span></summary><div class="nav-more-list"><button class="nav-item" data-page="feed"><span>≡</span> Archiwum informacji <i id="navUnread"></i></button>
+<button class="nav-item" data-page="saved"><span>◇</span> Zapisane i notatki</button>
+<button class="nav-item" data-page="practice"><span>◈</span> Trening i AI</button>
+<button class="nav-item" data-page="learning"><span>▤</span> Baza wiedzy</button>
+<button class="nav-item" data-page="sources"><span>◉</span> Źródła i ustawienia</button></div></details></nav>
   <div class="sidebar-bottom"><div class="divider"></div><div class="side-label">WATCH AREAS</div><div class="side-topics"><span>Chemical cargo</span><span>SIRE 2.0</span><span>Cyprus flag</span><span>Paris MoU</span><span>SOLAS / MARPOL</span></div><div class="side-version">v1.8 · Samsung / Android · PWA</div></div>
  </aside>
  <main class="main">
@@ -282,7 +367,8 @@
   <div class="mobile-hint" id="mobileHint">Samsung Android edition · Inspection checklists and Academy work offline. Internet feed availability is shown per source.</div><div class="main-content">
    <section id="page-overview" class="page active">
     <div class="glass-card watch-overview"><div><strong>Watch briefing</strong><p class="micro" id="watchOverview"></p></div><a class="button-outline" href="#watch">Open Watch</a></div>
-    <div class="hero"><div class="hero-overline">THE DAILY CHIEF OFFICER BRIEF</div><h2>Know what matters.<br><em>Before it affects your vessel.</em></h2><p>Official notices, tanker guidance and European PSC intelligence in one focused workspace.</p><div class="hero-buttons"><button class="button-primary" data-action="open-feed">Review latest intelligence <span>↗</span></button><button class="button-ghost" data-action="open-learning">Explore knowledge library</button></div><div class="hero-graphic"><div class="orbits o1"></div><div class="orbits o2"></div><div class="orbits o3"></div><div class="circle-center">CO<span>WATCH</span></div></div></div>
+    <section class="briefing-preview" aria-labelledby="briefingPreviewTitle"><div class="section-heading compact"><div><h2 id="briefingPreviewTitle">Ostatnie dostępne publikacje</h2></div><a href="#watch">Wszystkie publikacje ↗</a></div><div id="watchPreview" class="watch-preview-list" aria-live="polite"></div></section>
+    <div class="hero"><div class="hero-overline">CODZIENNY BRIEFING · CHEMICAL / OIL TANKERS</div><h2>Najważniejsze informacje. Bez zbędnego szukania.</h2><p>Wiadomości, przepisy, inspekcje i praktyczne szkolenia dla Chief Officera. Każda publikacja prowadzi do oryginalnego źródła.</p><div class="hero-buttons"><a class="button-primary" href="#watch">Sprawdź publikacje ↗</a><button class="button-ghost" data-action="open-feed">Archiwum informacji</button><button class="button-ghost" data-action="open-learning">Baza wiedzy</button></div></div>
     <div class="metrics"><div class="metric"><div class="metric-label">PRIORITY TO REVIEW <span>↗</span></div><strong id="metricPriority">—</strong><small>Unread items · keyword-screened</small></div><div class="metric"><div class="metric-label">NEW / UNREAD <span>•</span></div><strong id="metricUnread">—</strong><small>Across all monitored pages</small></div><div class="metric"><div class="metric-label">LIVE SOURCES <span>◉</span></div><strong id="metricSources">—</strong><small>Recent successful checks</small></div><div class="metric"><div class="metric-label">SAVED FOR REVIEW <span>◇</span></div><strong id="metricSaved">—</strong><small>Persistent local collection</small></div></div>
     <div class="quick-launch"><button class="launch-card" data-action="open-technical"><span class="launch-icon">◷</span><span><b>Technical Operations & Training</b><small>OEM manuals · practical equipment lessons · knowledge checks</small></span><span class="launch-arrow">↗</span></button>
       <button class="launch-card" data-action="open-inspections"><span class="launch-icon">☑</span><span><b>Prepare for PSC · SIRE 2.0 · CDI</b><small>64 shipboard self-checks · local evidence notes</small></span><span class="launch-arrow">↗</span></button>
@@ -302,11 +388,11 @@
     <p id="watchError" class="micro watch-warning" role="status"></p><p id="watchStorage" class="micro watch-warning" role="status"></p>
     <p id="watchBrief" class="subtle"></p><p id="watchCounts" class="watch-counts"></p>
     <div class="watch-tools"><label class="watch-field">View<select id="watchFilter"><option value="all">All publications</option><option value="last">Since last visit</option><option value="unread">Unread</option><option value="original">Original checked</option><option value="review">Awaiting review</option><option value="inspection">Inspection</option><option value="europe">Europe / Cyprus flag</option><option value="saved">Saved</option></select></label><label class="watch-field">Search<input type="search" id="watchSearch" placeholder="Source, topic or title"></label><button class="button-outline small" id="watchMarkAll">Mark shown as reviewed</button></div>
-    <div class="watch-layout"><div><h2>Publications</h2><div id="watchEntries"></div><button class="button-outline" id="watchMore" hidden>Show more publications</button></div><div><h2>Study from the source</h2><div id="watchLessons"></div></div></div>
+    <div class="watch-layout"><div><h2>Publications</h2><div id="watchEntries"></div><button class="button-outline" id="watchMore" hidden>Show more publications</button></div><details class="watch-study-more"><summary>Szkolenia i quizy oparte na źródłach</summary><div id="watchLessons"></div></details></div>
     <details class="glass-card gap-top"><summary>Source health and last successful checks</summary><div id="watchSources"></div></details>
     <details class="glass-card gap-top"><summary>Feed connection</summary><p class="subtle">Open the private Watch with your ChatGPT account. A self-hosted copy can use its own published JSON feed.</p><div class="watch-connection"><input id="watchFeedUrl" type="text" aria-label="Published feed URL" placeholder="Published HTTPS feed URL"><button class="button-primary" id="watchSaveUrl">Connect feed</button><a class="reference-short" id="watchHosted" target="_blank" rel="noopener noreferrer">Open private Watch</a></div></details>
    </section>
-   <section id="page-feed" class="page"><div class="section-heading compact"><div><div class="eyebrow">MONITORED PUBLICATIONS</div><h2>Intelligence feed</h2></div><button class="button-outline small" id="markVisibleRead">Mark shown as read</button></div><div class="filters"><div class="search-input">⌕ <input type="search" id="searchInput" placeholder="Search SIRE, MARPOL Annex II, Paris MoU, Cyprus…"></div><select id="priorityFilter"><option value="all">All priorities</option><option value="high">Priority review</option><option value="medium">Relevant</option><option value="low">General news</option></select><select id="categoryFilter"><option value="all">All topics</option></select><select id="sourceFilter"><option value="all">All sources</option></select><label class="toggle-checkbox"><input id="unreadOnly" type="checkbox"> Unread only</label></div><div id="feedCount" class="results-count"></div><div id="fullFeed" class="news-list feed-list"></div><button class="button-outline" id="showMore" hidden>Show more results</button></section>
+   <section id="page-feed" class="page"><div class="section-heading compact"><div><div class="eyebrow">MONITORED PUBLICATIONS</div><h2>Intelligence feed</h2></div><button class="button-outline small" id="markVisibleRead">Mark shown as read</button></div><div class="filters filters-simple"><div class="search-input">⌕ <input type="search" id="searchInput" placeholder="Search SIRE, MARPOL Annex II, Paris MoU, Cyprus…"></div><label class="toggle-checkbox"><input id="unreadOnly" type="checkbox"> Tylko nieprzeczytane</label><details class="feed-filters-more"><summary>Więcej filtrów</summary><div class="feed-filters-panel"><select id="priorityFilter"><option value="all">All priorities</option><option value="high">Priority review</option><option value="medium">Relevant</option><option value="low">General news</option></select><select id="categoryFilter"><option value="all">All topics</option></select><select id="sourceFilter"><option value="all">All sources</option></select></div></details></div><div id="feedCount" class="results-count"></div><div id="fullFeed" class="news-list feed-list"></div><button class="button-outline" id="showMore" hidden>Show more results</button></section>
    <section id="page-saved" class="page"><div class="section-heading"><div><div class="eyebrow">YOUR PERSONAL REFERENCE FILE</div><h2>Saved reading & notes</h2></div></div><p class="intro">Keep the items you want to discuss at the next safety meeting, review with the Master or incorporate into your onboard procedure checks.</p><div id="savedFeed" class="news-list"></div></section>
    <section id="page-technical" class="page">
     <div class="section-heading compact"><div><div class="eyebrow">CHIEF OFFICER · EQUIPMENT · PRACTICAL LEARNING</div><h2>Technical Operations & Training Hub</h2></div></div>
@@ -1257,6 +1343,35 @@ function renderLessons() {
   if(!list.length)root.append(element('p','subtle','No new guided study is available. The CO Academy remains available offline.'));
   if(list.length>lessonLimit)root.append(button('Show more study cards',()=>{lessonLimit+=12;renderLessons();}));
 }
+
+function renderBriefPreview(d) {
+  const root=$('watchPreview');if(!root)return;
+  root.replaceChildren();
+  const timestamp=e=>Date.parse(changedAt(e)||e.published||'')||0;
+  const latest=[...d.entries].filter(e=>{
+    try {const u=new URL(e.url);return u.protocol==='https:'&&!u.username&&!u.password;}catch{return false;}
+  }).sort((a,b)=>timestamp(b)-timestamp(a)).slice(0,3);
+  if(!latest.length) {
+    root.append(element('p','briefing-preview-empty','Brak publikacji z poprawnym odnośnikiem. Sprawdź połączenie źródeł.'));
+    return;
+  }
+  for(const e of latest) {
+    const card=element('article','briefing-preview-item');
+    const shortDate=(e.published||e.updated_at_source||changedAt(e)||'').slice(0,10);
+    const meta=[e.source_name||e.source_id,e.topic,shortDate].filter(Boolean).join(' · ');
+    const heading=element('h3','briefing-preview-headline');
+    const sourceLink=link(e.url,e.title);
+    heading.append(sourceLink);
+    card.append(element('div','briefing-preview-meta',meta),heading);
+    if(e.summary)card.append(element('p','briefing-preview-summary',e.summary));
+    if(sourceLink.tagName==='A'){
+      card.addEventListener('click',ev=>{if(!ev.target?.closest?.('a,button,input,select,summary'))sourceLink.click();});
+      card.title='Otwórz pełną publikację w oryginalnym źródle';
+    }
+    root.append(card);
+  }
+}
+
 function render() {
   if(!$('watchStatus'))return;
   const d=feedData(),headline=statusLine(d);
@@ -1266,6 +1381,7 @@ function render() {
   const unread=d.entries.filter(e=>!watch.seen.includes(keyFor(e))).length;
   const recent=(!isReference(d)&&baseline)?d.entries.filter(e=>changedAt(e)>baseline).length:null;
   const short=$('watchOverview');if(short)short.textContent=headline+' · '+(recent===null?unread+' unread':recent+' new or revised since your previous visit');
+  renderBriefPreview(d);
   $('watchCounts').textContent=(isReference(d)?'Reference collection':recent===null?'First visit on this device':recent+' new or revised since your last visit')+' · '+unread+' unread · '+d.lessons.length+' study cards';
   const briefing=d.briefing;
   $('watchBrief').textContent=briefing?'Daily briefing · '+briefing.day+' UTC · '+briefing.added+' discovered · '+briefing.amended+' revised · '+briefing.checks+' recorded runs':'';
