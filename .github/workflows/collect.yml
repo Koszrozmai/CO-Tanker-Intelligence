@@ -45,7 +45,14 @@ jobs:
           git add docs/data/intelligence.json docs/data/source_candidates.json
           if ! git diff --cached --quiet; then
             git commit -m "chore: refresh maritime intelligence and source candidates"
-            git push
+            # Direct edits or another writer may have advanced main while collecting.
+            # Rebase only our generated-data commit; never force-push.
+            for attempt in 1 2 3; do
+              git pull --rebase origin main
+              if git push origin HEAD:main; then break; fi
+              if [ "$attempt" -eq 3 ]; then exit 1; fi
+              sleep 3
+            done
           fi
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
