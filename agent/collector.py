@@ -125,6 +125,39 @@ def classify(title,src):
     if any(w in t for w in ['solas','safety','accident','incident','fire','mooring']):return 'Safety & equipment'
     return src['topic']
 
+SOURCE_LABELS = {
+    'regulator': 'OFICJALNE · organ / administracja',
+    'industry_body': 'ORGANIZACJA BRANŻOWA · nie stanowi prawa',
+    'editorial': 'MEDIA BRANŻOWE · nieoficjalne',
+    'social': 'WIDEO / SOCIAL MEDIA · nieoficjalne',
+}
+
+# Curated publisher identity is not equivalent to verification of individual claims.
+def provenance(src):
+    kind = src.get('source_class', 'regulator')
+    if kind not in SOURCE_LABELS:
+        kind = 'editorial'
+    return {'source_class': kind, 'source_label': SOURCE_LABELS[kind],
+            'publisher_review': src.get('editorial_review', 'Known source registry; review original'),
+            'channel': src.get('channel', 'website')}
+
+# Prioritize deck, chemical/product tanker and navigational content, not generic viral news.
+CO_TERMS = re.compile(
+    r'\\b(tanker|chemical|cargo|marpol|solas|sire|cdi|vetting|psc|port.state|'
+    r'mooring|pilotage|navigation|ecdis|gmdss|ballast|bunkering|vessel|'
+    r'ship|shipping|maritime|seafarer|crew|master|bridge|enclosed.space|'
+    r'terminal|collision|grounding|oil.spill|pollution|inert.gas|tank.clean|'
+    r'prewash|cargo.pump|safety|incident|accident|stcw|inspec|piracy|'
+    r'port|container|fire|lifeboat|anchor|risk.assess|training)\\b', re.I)
+def relevant_to_co(title, source):
+    if source.get('source_class', 'regulator') in ('regulator', 'industry_body'):
+        return True
+    return bool(CO_TERMS.search(title))
+
+def listing_label(src):
+    label = provenance(src)['source_label']
+    return label + ' · Wpis z listy/RSS; treść i skutki prawne NOT verified'
+
 def study_card(entry):
     topic=entry['topic']
     group=('SIRE 2.0' if 'SIRE' in topic else 'CDI-M' if 'CDI' in topic or 'Chemical' in topic else 'PSC' if 'PSC' in topic else 'Chief Officer')
@@ -133,7 +166,7 @@ def study_card(entry):
         'questions':[f'What does the original publication actually state, and what is only a proposal or news item?',
                      'Does it apply to our chemical/product tanker, flag, trading area and cargo?',
                      f'Could this change any {group} preparation or onboard records, subject to the approved SMS and manuals?'],
-        'status':'GUIDED RESEARCH / NEEDS SOURCE REVIEW', 'created_at':entry['discovered_at'], 'topic':topic}
+        'status':'GUIDED RESEARCH / NEEDS SOURCE REVIEW', 'created_at':entry['discovered_at'], 'topic':topic, 'source_label':entry.get('source_label','NIEZWERYFIKOWANE')}
 
 def read_json(path, fallback):
     try:return json.loads(Path(path).read_text(encoding='utf-8'))
@@ -144,17 +177,28 @@ def run(sources, previous, session=None, delay=0):
     old={x['id']:x for x in previous.get('entries',[]) if isinstance(x,dict) and 'id' in x}
     old_source={x['id']:x for x in previous.get('sources',[]) if isinstance(x,dict) and 'id' in x}
     health=[];new=0
+    # Re-label historic and cached entries, even when a publisher is temporarily unavailable.
+    registry = {src['id']:src for src in sources}
+    for item in old.values():
+        src = registry.get(item.get('source_id'))
+        if src:
+            item.update(provenance(src))
+            if item.get('scope') == 'listing':
+                item['status_label'] = listing_label(src)
+        else:
+            item.setdefault('source_label', 'NIEZWERYFIKOWANE · źródło spoza rejestru')
     for src in sources:
         spec=dict(src);spec['url']=spec['url'].replace('{year}',str(datetime.now(timezone.utc).year))
         last = old_source.get(src['id'],{})
         if last.get('url') != spec['url']:
             last = {}
         if last.get('next_attempt') and last['next_attempt'] > current:
-            health.append({**last, 'deferred':True})
+            health.append({**last, **provenance(src), 'id':src['id'],
+                           'name':src['name'], 'deferred':True})
             continue
         response = None
         retry_after = None
-        state={**last, 'deferred':False,'id':src['id'],'name':src['name'],'url':spec['url'],'last_attempt':current,'ok':False,'error':None}
+        state={**last, **provenance(src), 'deferred':False,'id':src['id'],'name':src['name'],'url':spec['url'],'last_attempt':current,'ok':False,'error':None}
         try:
             # Server-side hardcoded sources only, no arbitrary user-supplied URLs.
             if not allowed(spec['url'],src['host']):raise ValueError('Unapproved source domain')
@@ -188,6 +232,8 @@ def run(sources, previous, session=None, delay=0):
             entries=parse_feed(spec,sample) if '<rss' in sample[:400].lower() or '<feed' in sample[:400].lower() else parse_html(spec,sample)
             if not entries:raise RuntimeError('No matching publications: layout, permissions or selector may have changed')
             for doc in entries:
+                if not relevant_to_co(doc['title'], src):
+                    continue
                 item_id=digest(src['id']+'|'+doc['url']);topic=classify(doc['title'],spec)
                 if item_id in old:
                     old[item_id]['last_seen']=current
@@ -201,7 +247,7 @@ def run(sources, previous, session=None, delay=0):
                     continue
                 old[item_id]={'id':item_id,'source_id':src['id'],'source_name':src['name'],'title':doc['title'],'url':doc['url'],'topic':topic,
                     'region':src['region'],'published':doc.get('published'),'scope':'listing','legal_status':'under review','revision':1,'changed_at':current,'discovered_at':current,'last_seen':current,
-                    'status_label':'Public source listing detected; legal status and entry into force NOT verified'}
+                    **provenance(src),'status_label':listing_label(src)}
                 new+=1
                 state['last_change_detected']=current
             state.update(next_attempt=None,consecutive_failures=0,fetch_status='ok')
@@ -231,7 +277,7 @@ def run(sources, previous, session=None, delay=0):
     training=[study_card(it) for it in newest[:50]]
     return {'schema_version':1,'generated_at':current,'collector_status':'RUN_COMPLETED' if all(x['ok'] for x in health) else 'PARTIAL' if any(x['ok'] for x in health) else 'ALL_SOURCES_FAILED',
             'entries':newest,'lessons':training,'sources':health,'new_links_this_run':new,
-            'disclaimer':'Discovery from public listing pages only. All legal status, effective dates, applicability and onboard actions require verification.'}
+            'disclaimer':'All items show publisher provenance; editorial, industry and social posts are NOT official legal sources. Discovery from listings/RSS, not independently verified regulations. Confirm any legal or onboard action in primary instruments and approved SMS.'}
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--sources',default=str(Path(__file__).with_name('sources.json')));p.add_argument('--output',default=str(DEFAULT_OUTPUT));p.add_argument('--delay',type=float,default=0.5)
