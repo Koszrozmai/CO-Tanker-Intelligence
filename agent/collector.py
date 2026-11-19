@@ -93,6 +93,28 @@ def parse_html(source, content):
     return list(found.values())
 
 
+def parse_news_sections(source, content):
+    """Public news-list articles without individual permalinks, e.g. CDI.
+    The link intentionally opens the publisher's complete dated news page.
+    """
+    tree = html.fromstring(content)
+    found = {}
+    for heading in tree.xpath('//h2 | //h3 | //h4')[:180]:
+        title = clean(' '.join(heading.itertext()))
+        if not (20 <= len(title) <= 220):
+            continue
+        if not re.search(r'CDI|inspection|questionnaire|ship|marine|vetting|report|safety|tanker|energy|SIR', title, re.I):
+            continue
+        if title.lower() in ('recent news','latest news','cdi marine'):
+            continue
+        # Without an article permalink the publisher's listing is the honest URL.
+        # Distinct headlines are stored under distinct IDs in run().
+        found[title] = {'title':title, 'url':source['url'], 'published':None, 'link_scope':'publisher_news_index'}
+        if len(found)>=30:
+            break
+    return list(found.values())
+
+
 def parse_date(value):
     if not value:
         return None
@@ -239,12 +261,12 @@ def run(sources, previous, session=None, delay=0):
             raw=bytes(buf)
             if not raw:raise RuntimeError('Empty response')
             sample=raw.decode(response.encoding or 'utf-8',errors='replace')
-            entries=parse_feed(spec,sample) if '<rss' in sample[:400].lower() or '<feed' in sample[:400].lower() else parse_html(spec,sample)
+            entries=parse_news_sections(spec,sample) if spec.get('mode')=='news_sections' else parse_feed(spec,sample) if '<rss' in sample[:400].lower() or '<feed' in sample[:400].lower() else parse_html(spec,sample)
             if not entries:raise RuntimeError('No matching publications: layout, permissions or selector may have changed')
             for doc in entries:
                 if not relevant_to_co(doc['title'], src):
                     continue
-                item_id=digest(src['id']+'|'+doc['url']);topic=classify(doc['title'],spec)
+                item_id=digest(src['id']+'|'+doc['url']+'|'+(doc['title'] if doc.get('link_scope') else ''));topic=classify(doc['title'],spec)
                 if item_id in old:
                     old[item_id]['last_seen']=current
                     previous_item=old[item_id]
@@ -257,7 +279,8 @@ def run(sources, previous, session=None, delay=0):
                     continue
                 old[item_id]={'id':item_id,'source_id':src['id'],'source_name':src['name'],'title':doc['title'],'url':doc['url'],'topic':topic,
                     'region':src['region'],'published':doc.get('published'),'scope':'listing','legal_status':'under review','revision':1,'changed_at':current,'discovered_at':current,'last_seen':current,
-                    **provenance(src),'status_label':listing_label(src)}
+                    **provenance(src),'link_scope':doc.get('link_scope','article'),
+                    'status_label':listing_label(src)}
                 new+=1
                 state['last_change_detected']=current
             state.update(next_attempt=None,consecutive_failures=0,fetch_status='ok')
