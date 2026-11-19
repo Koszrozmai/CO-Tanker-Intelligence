@@ -1,7 +1,7 @@
 /* CO Tanker Intelligence v1.9.0 - offline-first, update-aware app shell */
-const CACHE='co-tanker-intelligence-v1.9.0';
+const CACHE='co-tanker-intelligence-sire20261119';
 const ROOT=new URL('./',self.registration.scope);
-const PATHS=['./','./index.html','./manifest.webmanifest','./icons/icon192.png','./icons/icon512.png'];
+const PATHS=['./','./index.html','./manifest.webmanifest','./icons/icon192.png','./icons/icon512.png','./sire_training.js','./sire_p1a.js','./sire_p1b.js','./sire_p1c.js','./sire_p1d.js','./sire_p1e.js','./sire_p2a.js','./sire_p2b.js','./sire_p2c.js','./sire_p2d.js'];
 const SET=new Set(PATHS.map(p=>new URL(p,ROOT).pathname));
 self.addEventListener('install',event=>event.waitUntil((async()=>{
  const cache=await caches.open(CACHE);
