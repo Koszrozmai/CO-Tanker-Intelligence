@@ -1,0 +1,87 @@
+{
+  "generated_at": "2026-11-19T21:31:43+00:00",
+  "approval_policy": "All candidates remain inactive pending publisher identity, editorial quality, HTTPS and access review",
+  "candidates": [
+    {
+      "host": "360coveragepros.com",
+      "example_url": "https://360coveragepros.com/",
+      "found_via": "https://gcaptain.com/",
+      "link_context": "360 Coverage Pros Mariner Liability Insurance",
+      "approval": "PENDING HUMAN REVIEW",
+      "publisher_type": "UNASSESSED",
+      "note": "Outbound link only. No credibility, identity or content verification performed."
+    },
+    {
+      "host": "mopslicenseins.com",
+      "example_url": "https://mopslicenseins.com/",
+      "found_via": "https://gcaptain.com/",
+      "link_context": "MOPS Marine License Insurance",
+      "approval": "PENDING HUMAN REVIEW",
+      "publisher_type": "UNASSESSED",
+      "note": "Outbound link only. No credibility, identity or content verification performed."
+    },
+    {
+      "host": "commercial.raymarine.com",
+      "example_url": "https://commercial.raymarine.com/",
+      "found_via": "https://gcaptain.com/",
+      "link_context": "RayMarine",
+      "approval": "PENDING HUMAN REVIEW",
+      "publisher_type": "UNASSESSED",
+      "note": "Outbound link only. No credibility, identity or content verification performed."
+    },
+    {
+      "host": "mylunas.com.my",
+      "example_url": "https://mylunas.com.my/",
+      "found_via": "https://insidemarine.com/",
+      "link_context": "Amree Imran Lunas Naval Shipyard",
+      "approval": "PENDING HUMAN REVIEW",
+      "publisher_type": "UNASSESSED",
+      "note": "Outbound link only. No credibility, identity or content verification performed."
+    },
+    {
+      "host": "canfornav.com",
+      "example_url": "https://canfornav.com/",
+      "found_via": "https://insidemarine.com/",
+      "link_context": "Canfornav International shipping since 1976",
+      "approval": "PENDING HUMAN REVIEW",
+      "publisher_type": "UNASSESSED",
+      "note": "Outbound link only. No credibility, identity or content verification performed."
+    },
+    {
+      "host": "everhonestmarine.com",
+      "example_url": "https://everhonestmarine.com/",
+      "found_via": "https://insidemarine.com/",
+      "link_context": "Ms Ann Liu  Everhonest Marine",
+      "approval": "PENDING HUMAN REVIEW",
+      "publisher_type": "UNASSESSED",
+      "note": "Outbound link only. No credibility, identity or content verification performed."
+    }
+  ],
+  "checks": [
+    {
+      "seed": "https://www.imo.org/en/mediacentre/pressbriefings/pages/default.aspx",
+      "status": "ok"
+    },
+    {
+      "seed": "https://www.emsa.europa.eu/newsroom/latest-news.html",
+      "status": "ok"
+    },
+    {
+      "seed": "https://www.marineinsight.com/",
+      "status": "ok"
+    },
+    {
+      "seed": "https://safety4sea.com/",
+      "status": "unavailable",
+      "error": "HTTP 200 or oversized response"
+    },
+    {
+      "seed": "https://gcaptain.com/",
+      "status": "ok"
+    },
+    {
+      "seed": "https://insidemarine.com/",
+      "status": "ok"
+    }
+  ]
+}
