@@ -47,6 +47,8 @@ jobs:
           fi
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+      - name: Build Sea Glass dashboard for Pages
+        run: python agent/build_web.py
       - name: Package PWA website
         uses: actions/upload-pages-artifact@v4
         with:
