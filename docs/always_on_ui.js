@@ -118,7 +118,7 @@ function article(e) {
   }
   const actions=element('div','watch-actions');
   // The feed provides the original publisher URL. Never guess a missing link.
-  const sourceLink=link(e.url,e.scope==='listing'?'Otwórz publikację u źródła ↗':'Czytaj pełne źródło ↗');
+  const sourceLink=link(e.url,e.link_scope==='publisher_news_index'?'Otwórz zbiorczą stronę komunikatów ↗':e.scope==='listing'?'Otwórz publikację u źródła ↗':'Czytaj pełne źródło ↗');
   if(sourceLink.tagName==='A') {
     sourceLink.classList.add('watch-source-link');
     sourceLink.setAttribute('aria-label','Otwórz oryginalne źródło: '+e.title);
