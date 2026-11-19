@@ -207,9 +207,12 @@ function render() {
   for(const s of d.sources) {
     const row=element('div','watch-source'),info=element('div','');
     const label=s.deferred?'Ponowna próba później':s.fetch_status==='not_checked'?'Nie sprawdzono':s.ok?'Odczyt OK':'Brak dostępu';
-    info.append(element('strong','',s.name||s.id),element('p','micro',provenanceLabel(s)),
-      element('p','micro','Last success · '+date(s.last_success)+(s.last_attempt?' | Attempt · '+date(s.last_attempt):'')));
-    if(s.detail||s.error)info.append(element('p','micro',s.detail||s.error));
+    const heading=element('strong','');
+    heading.append(link(s.url,s.name||s.id));
+    info.append(heading,element('p','micro',provenanceLabel(s)),
+      element('p','micro','Ostatni udany odczyt: '+date(s.last_success)+(s.last_attempt?' | Próba: '+date(s.last_attempt):'')));
+    if(s.detail||s.error)info.append(element('p','micro','Problem: '+(s.detail||s.error)));
+    if(!s.ok && s.url)info.append(element('p','micro','Możesz otworzyć stronę wydawcy ręcznie. Nie oznacza to poprawnej synchronizacji.'));
     row.append(info,element('span',s.ok?'status-ok':'status-fail',label));sources.append(row);
   }
   renderLessons();
