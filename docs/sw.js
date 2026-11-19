@@ -1,5 +1,5 @@
-/* CO Tanker Intelligence v1.8 offline-first app shell */
-const CACHE='co-tanker-intelligence-v1.8.1';
+/* CO Tanker Intelligence v1.8.2 - offline-first, update-aware app shell */
+const CACHE='co-tanker-intelligence-v1.8.2';
 const ROOT=new URL('./',self.registration.scope);
 const PATHS=['./','./index.html','./manifest.webmanifest','./icons/icon192.png','./icons/icon512.png'];
 const SET=new Set(PATHS.map(p=>new URL(p,ROOT).pathname));
@@ -17,6 +17,16 @@ self.addEventListener('fetch',event=>{
  if(event.request.method!=='GET'||url.origin!==ROOT.origin||!SET.has(url.pathname))return;
  event.respondWith((async()=>{
   const cache=await caches.open(CACHE);
+  // Online uses the latest UI. Offline uses the installed app shell.
+  if(event.request.mode==='navigate'||url.pathname===new URL('./index.html',ROOT).pathname||url.pathname===ROOT.pathname){
+   try{
+    const response=await fetch(event.request,{cache:'no-cache'});
+    if(response.ok)await cache.put(event.request,response.clone());
+    return response;
+   }catch{
+    return await cache.match(event.request,{ignoreSearch:true})||await cache.match(new URL('./index.html',ROOT));
+   }
+  }
   return await cache.match(event.request,{ignoreSearch:true})||fetch(event.request);
  })());
 });
