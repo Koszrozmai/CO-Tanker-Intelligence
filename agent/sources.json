@@ -81,17 +81,14 @@
   {
     "id": "cdi",
     "name": "CDI-M news",
-    "url": "https://www.cdim.org/",
+    "url": "https://www.cdim.org/psp/cdim.wp_news",
     "host": "www.cdim.org",
-    "mode": "html",
-    "selector": "a[href*='cdim.wp_news_item']",
-    "path_rule": "",
+    "mode": "news_sections",
     "topic": "CDI-M",
     "region": "Global",
     "source_class": "industry_body",
     "editorial_review": "existing approved publisher",
-    "channel": "website",
-    "xpath": "//a[contains(@href,'wp_news_item') or contains(@href,'p_inf_number')]"
+    "channel": "website"
   },
   {
     "id": "emsa",
