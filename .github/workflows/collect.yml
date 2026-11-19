@@ -21,7 +21,7 @@ jobs:
     timeout-minutes: 20
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://koszrozmai.github.io/CO-Tanker-Intelligence/
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -82,6 +82,23 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: docs
+      # GitHub artifact listing can lag behind a successful upload.
+      - name: Allow Pages artifact metadata to propagate
+        run: sleep 20
       - name: Publish PWA
-        id: deployment
+        id: publish_first
         uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Retry Pages publication if artifact metadata was delayed
+        id: publish_retry
+        if: steps.publish_first.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+      - name: Confirm Pages deployment completed
+        env:
+          FIRST: ${{ steps.publish_first.outcome }}
+          SECOND: ${{ steps.publish_retry.outcome }}
+        run: |
+          if [ "$FIRST" != "success" ] && [ "$SECOND" != "success" ]; then
+            echo "Pages deployment was not confirmed" >&2
+            exit 1
+          fi
