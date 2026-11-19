@@ -61,6 +61,16 @@ def parse_html(source, content):
         if source.get('path_rule') and source['path_rule'].lower() not in path:
             continue
         title = clean(' '.join(a.itertext()))
+        # Many official sites expose only "Read more" in the anchor. Use the
+        # closest heading or enclosing news card, never fabricate the title.
+        if len(title) < 17 or title.lower() in ('read more','more','details','view'):
+            heading = a.xpath('ancestor::*[self::article or self::li or self::div][1]//*[self::h2 or self::h3 or self::h4][1]')
+            if heading:
+                title = clean(' '.join(heading[0].itertext()))
+            else:
+                parent = a.xpath('parent::*')
+                if parent:
+                    title = clean(' '.join(parent[0].itertext()))
         published = None
         if source['mode'] == 'cyprus':
             cells = a.xpath('ancestor::tr[1]/td')
@@ -76,7 +86,7 @@ def parse_html(source, content):
                     published = parse_date(times[0].get('datetime') or ''.join(times[0].itertext()))
             if len(title) < 17:
                 continue
-        if 17 <= len(title) <= 420:
+        if 17 <= len(title) <= 420 and title.lower() not in ('read more','latest news','recent news'):
             found[link] = {'title':title[:200], 'url':link, 'published':published}
         if len(found) >= 35:
             break
