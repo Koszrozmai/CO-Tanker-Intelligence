@@ -182,6 +182,14 @@ CO_TERMS = re.compile(
     r'prewash|cargo.pump|safety|incident|accident|stcw|inspec|piracy|'
     r'port|container|fire|lifeboat|anchor|risk.assess|training)\b', re.I)
 def relevant_to_co(title, source):
+    if source.get('id') == 'cdi':
+        # CDI's public news list contains large volumes of terminal membership
+        # announcements and individual terminal reports, not CO tanker guidance.
+        if re.search(r'welcomes?|joins?|new CDI-T report|terminal.*joins|member company', title, re.I):
+            return False
+        return bool(re.search(r'inspection|ship|SIR|questionnaire|AEPS|safety|vetting|'
+                              r'procedure|amendment|guidance|marine|regulation|chemical|'
+                              r'energy|HVPQ|risk|cargo|audit', title, re.I))
     if source.get('source_class', 'regulator') in ('regulator', 'industry_body'):
         return True
     return bool(CO_TERMS.search(title))
@@ -305,7 +313,12 @@ def run(sources, previous, session=None, delay=0):
             state.update(fetch_status='unavailable',consecutive_failures=count,next_attempt=retry_at.isoformat(timespec='seconds').replace('+00:00','Z'))
         health.append(state)
         if delay:time.sleep(delay)
-    newest=sorted(old.values(),key=lambda x:x.get('changed_at') or x.get('discovered_at',''),reverse=True)[:MAX_ENTRIES]
+    # Keep previously discovered entries if they remain relevant to the officer;
+    # do not allow CDI terminal advertising to crowd out safety or official notices.
+    relevant=[item for item in old.values()
+              if item.get('source_id') not in registry or
+              relevant_to_co(item.get('title',''),registry[item['source_id']])]
+    newest=sorted(relevant,key=lambda x:x.get('changed_at') or x.get('discovered_at',''),reverse=True)[:MAX_ENTRIES]
     # Suggest a limited number of source-based exercises. No invented regulatory interpretations.
     training=[study_card(it) for it in newest[:50]]
     return {'schema_version':1,'generated_at':current,'collector_status':'RUN_COMPLETED' if all(x['ok'] for x in health) else 'PARTIAL' if any(x['ok'] for x in health) else 'ALL_SOURCES_FAILED',
