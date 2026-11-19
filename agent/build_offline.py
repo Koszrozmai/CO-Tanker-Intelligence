@@ -33,6 +33,18 @@ def build(dest):
     html=html.replace('<link rel="stylesheet" href="styles.css">','<style>'+ (APP/'styles.css').read_text()+'</style>')
     source=bundle().replace('</script','<\\/script')
     html=html.replace('<script type="module" src="mobile_core.js"></script>','<script>'+source+'</script>')
+    # Bundle external SIRE Deck question modules into the completely offline single file.
+    # Keep the identical local data and progress UX rather than relying on CDN or network.
+    dataset=[]
+    for name in ['p1a','p1b','p1c','p1d','p1e','p2a','p2b','p2c','p2d']:
+        source_part=(APP/('sire_'+name+'.js')).read_text(encoding='utf-8')
+        source_part=re.sub(r'^export (?=const )','',source_part,flags=re.M)
+        dataset.append(source_part)
+    deck=(APP/'sire_training.js').read_text(encoding='utf-8')
+    deck=re.sub(r"^import \{[^}]+\} from '\./sire_[^']+\.js';\s*",'',deck,flags=re.M)
+    embedded=('\n'.join(dataset)+'\n'+deck).replace('</script','<\\/script')
+    html=html.replace('<script type="module" src="./sire_training.js"></script>','<script>'+embedded+'</script>')
+
     dest.write_text(html)
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('output',type=Path)

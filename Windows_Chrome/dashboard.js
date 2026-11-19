@@ -253,14 +253,14 @@ function wire(){
   }catch(e){notice.textContent=String(e.message||e);}
  });
  el('exportData').addEventListener('click',()=>{
-  const output={format:'co-intelligence-backup',version:5,exportedAt:new Date().toISOString(),settings:state.settings,items:state.items,customSources:state.customSources,inspectionContext:state.inspectionContext,inspectionRecords:state.inspectionRecords,studiedModules:state.studiedModules,routineChecks:state.routineChecks,practice:state.practice,planner:state.planner,alwaysOn:exportWatchBackup()};
+  const output={format:'co-intelligence-backup',version:5,exportedAt:new Date().toISOString(),settings:state.settings,items:state.items,customSources:state.customSources,inspectionContext:state.inspectionContext,inspectionRecords:state.inspectionRecords,studiedModules:state.studiedModules,routineChecks:state.routineChecks,practice:state.practice,sireDeck:window.SIRE_DECK_BACKUP?.()||null,planner:state.planner,alwaysOn:exportWatchBackup()};
   const blob=new Blob([JSON.stringify(output,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=node('a');a.href=url;a.download='co_intelligence_backup_'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
  });
  el('importData').addEventListener('click',()=>el('importFile').click());
  el('importFile').addEventListener('change',async e=>{
   const f=e.target.files?.[0];if(!f)return;if(f.size>9_000_000){showToast('Backup file is too large',true);return;}
   try{const value=JSON.parse(await f.text());if(!confirm('Import this backup and replace existing items/settings?'))return;
-   const r=await send('IMPORT_STATE',{value});if(!r.ok)throw Error(r.error);await reload();importWatchBackup(value.alwaysOn);renderPage();showToast('Backup imported');
+   const r=await send('IMPORT_STATE',{value});if(!r.ok)throw Error(r.error);await reload();importWatchBackup(value.alwaysOn);if(value.sireDeck)window.SIRE_DECK_IMPORT?.(value.sireDeck);renderPage();showToast('Backup imported');
   }catch(err){showToast(err.message||'Invalid backup',true);}finally{e.target.value='';}
  });
  window.addEventListener('hashchange',()=>{const p=location.hash.slice(1);if(p!==page)showPage(p);});

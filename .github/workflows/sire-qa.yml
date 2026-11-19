@@ -1,0 +1,47 @@
+name: SIRE Deck Trainer quality checks
+on:
+  pull_request:
+    paths:
+      - "docs/sire_*.js"
+      - "docs/index.html"
+      - "docs/sw.js"
+      - "Windows_Chrome/sire_*.js"
+      - "Windows_Chrome/dashboard.html"
+      - "agent/build_offline.py"
+      - "agent/test_sire_deck.py"
+      - ".github/workflows/sire-qa.yml"
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate source-derived library and preservation of modules
+        run: python -m unittest discover -s agent -p test_sire_deck.py -v
+      - name: JavaScript syntax
+        run: |
+          for dir in docs Windows_Chrome; do
+            node --check "$dir/sire_training.js"
+            for file in "$dir"/sire_p*.js; do node --check "$file"; done
+          done
+      - name: Build offline single-file edition
+        run: |
+          python -m py_compile agent/build_offline.py
+          python agent/build_offline.py /tmp/co_tanker_offline_sire.html
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('/tmp/co_tanker_offline_sire.html').read_text()
+          assert 'const SIRE_P1A=' in s
+          assert 'const SIRE_P2D=' in s
+          assert 'SIRE_DECK_BACKUP' in s
+          assert 'type="module" src="./sire_training.js"' not in s
+          print('Offline HTML complete:',len(s),'characters')
+          PY
