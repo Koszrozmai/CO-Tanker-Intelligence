@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>CO Tanker Intelligence — minimalist app icon</title>
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#143E49"/>
+      <stop offset="1" stop-color="#0D2934"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#sea)"/>
+  <g fill="none" stroke="#F0F8F5" stroke-width="23" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M186 280V205H293V280"/>
+    <path d="M239 205V173"/>
+    <path d="M127 280H384L356 341C342 371 317 387 279 387H232C196 387 169 369 154 341Z"/>
+  </g>
+  <path d="M159 413C191 398 217 398 247 413C277 428 305 428 337 413" fill="none" stroke="#8DE1CC" stroke-width="23" stroke-linecap="round"/>
+</svg>

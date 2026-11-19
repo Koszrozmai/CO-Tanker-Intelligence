@@ -1,51 +1,39 @@
-"""Create a single-file edition from the same dashboard, engines and source cards as the PWA."""
+"""Package the deployed dashboard, technical training and SIRE questions for file://."""
+from build_web import prepare
+import argparse
+import base64
+import re
 from pathlib import Path
-import argparse,base64,re
 
-APP=Path(__file__).resolve().parent.parent/'docs'
-ORDER=['config','inspection_data','training_engine','planner_engine','classification','parser_pwa','release_reference','always_on_ui','training_ui','planner_ui','mobile_core','dashboard']
-def bundle():
-    modules=["'use strict';\nconst modules=Object.create(null);"]
-    for module in ORDER:
-        source=(APP/(module+'.js')).read_text()
-        exports=re.findall(r'^export (?:const|function) (\w+)',source,re.M)
-        for items in re.findall(r'^export \{([^}]+)\};',source,re.M):
-            exports.extend(x.strip() for x in items.split(','))
-        source=re.sub(r"^import \{([^}]+)\} from '\./([\w]+)\.js';",r"const {\1}=modules['\2'];",source,flags=re.M)
-        source=re.sub(r'^export \{[^}]+\};','',source,flags=re.M)
-        source=re.sub(r'^export (?=const|function)','',source,flags=re.M)
-        if module=='mobile_core':
-            source=source.replace("await import('./dashboard.js');",'')
-            source=source.replace("const isLocal=location.protocol==='file:';","const isLocal=true;")
-            source=source.replace("if('serviceWorker' in navigator", "if(!isLocal && 'serviceWorker' in navigator")
-        if module=='always_on_ui':
-            source=re.sub(r"^const localFile=.*?;$",'const localFile=true;',source,flags=re.M)
-        if re.search(r'^(import|export) ',source,re.M):
-            raise ValueError('Unexpected module syntax in '+module)
-        modules.append("modules['"+module+"']=(()=>{\n"+source+"\nreturn {"+','.join(exports)+"};\n})();")
-    return '\n'.join(modules)
+APP = Path(__file__).resolve().parents[1] / 'docs'
+
+
+def embedded_icon(match):
+    path = APP / match.group('path')
+    encoded = base64.b64encode(path.read_bytes()).decode('ascii')
+    return f'{match["attribute"]}="data:image/png;base64,{encoded}"'
+
+
 def build(dest):
-    html=(APP/'index.html').read_text()
-    html=html.replace('CO Tanker Intelligence · Samsung','CO Tanker Intelligence · Offline')
-    html=re.sub(r'<link rel="manifest"[^>]+>','',html)
-    icon=base64.b64encode((APP/'icons/icon192.png').read_bytes()).decode()
-    html=html.replace('href="icons/icon192.png"','href="data:image/png;base64,'+icon+'"')
-    html=html.replace('<link rel="stylesheet" href="styles.css">','<style>'+ (APP/'styles.css').read_text()+'</style>')
-    source=bundle().replace('</script','<\\/script')
-    html=html.replace('<script type="module" src="mobile_core.js"></script>','<script>'+source+'</script>')
-    # Bundle external SIRE Deck question modules into the completely offline single file.
-    # Keep the identical local data and progress UX rather than relying on CDN or network.
-    dataset=[]
+    html = prepare((APP / 'index.html').read_text(encoding='utf-8'))
+    html = re.sub(r'<link rel="(?:manifest|apple-touch-icon)"[^>]*>', '', html)
+    html = re.sub(r'(?P<attribute>href|src)="(?:\./)?(?P<path>icons/icon\d+\.png)"', embedded_icon, html)
+    html = html.replace('<link rel="stylesheet" href="styles.css">',
+                        '<style>' + (APP / 'styles.css').read_text() + '</style>')
+    parts = []
     for name in ['p1a','p1b','p1c','p1d','p1e','p2a','p2b','p2c','p2d']:
-        source_part=(APP/('sire_'+name+'.js')).read_text(encoding='utf-8')
-        source_part=re.sub(r'^export (?=const )','',source_part,flags=re.M)
-        dataset.append(source_part)
-    deck=(APP/'sire_training.js').read_text(encoding='utf-8')
-    deck=re.sub(r"^import \{[^}]+\} from '\./sire_[^']+\.js';\s*",'',deck,flags=re.M)
-    embedded=('\n'.join(dataset)+'\n'+deck).replace('</script','<\\/script')
-    html=html.replace('<script type="module" src="./sire_training.js"></script>','<script>'+embedded+'</script>')
+        module = (APP / f'sire_{name}.js').read_text()
+        parts.append(re.sub(r'^export (?=const )', '', module, flags=re.M))
+    deck = (APP / 'sire_training.js').read_text().replace("import './sea_glass.js';\n", '')
+    parts.append(re.sub(r"^import \{[^}]+\} from './sire_[^']+\.js';\s*", '', deck, flags=re.M))
+    tag = '<script type="module" src="./sire_training.js"></script>'
+    if html.count(tag) != 1:
+        raise ValueError('Missing SIRE module entry point')
+    code = '\n'.join(parts).replace('</script', '<\\/script')
+    dest.write_text(html.replace(tag, '<script>(()=>{\n' + code + '\n})();</script>'), encoding='utf-8')
 
-    dest.write_text(html)
-if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('output',type=Path)
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('output', type=Path)
     build(parser.parse_args().output)
