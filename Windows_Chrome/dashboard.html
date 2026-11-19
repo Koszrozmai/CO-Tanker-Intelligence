@@ -6,18 +6,17 @@
   <div class="brand"><div class="brand-icon">✳</div><div><strong>CO INTELLIGENCE</strong><small>TANKER REGULATORY WATCH</small></div></div>
   <div class="ship-profile"><span class="pill-dot"></span> CHEMICAL TANKERS <small>EUROPE FIRST · WORLDWIDE</small></div>
   <label class="mobile-module-jump" for="mobileJump">OPEN MODULE <select id="mobileJump" aria-label="Jump to module"><option value="overview">Overview</option><option value="planner">CO Planner</option><option value="inspections">Inspection readiness</option><option value="academy">CO Academy</option><option value="practice">Inspection simulator & AI handoff</option><option value="watch">Always-On Watch</option><option value="feed">News feed</option><option value="saved">Saved & notes</option><option value="learning">Knowledge centre</option><option value="sources">Settings & backup</option></select></label>
-  <nav class="main-nav" id="nav">
-   <button class="nav-item active" data-page="overview"><span>◫</span> Overview</button>
-   <button class="nav-item" data-page="watch"><span>◉</span> Always-On Watch</button>
-   <button class="nav-item" data-page="feed"><span>≡</span> Intelligence feed <i id="navUnread"></i></button>
-   <button class="nav-item" data-page="saved"><span>◇</span> Saved & notes</button>
-   <button class="nav-item" data-page="planner"><span>◷</span> CO Planner <i id="navPlannerBadge" class="planner-nav-count"></i></button>
-   <button class="nav-item" data-page="inspections"><span>☑</span> Inspection readiness</button>
-   <button class="nav-item" data-page="academy"><span>✦</span> CO Academy & routines</button>
-   <button class="nav-item" data-page="practice"><span>◈</span> Inspector practice & AI</button>
-   <button class="nav-item" data-page="learning"><span>▤</span> Knowledge centre</button>
-   <button class="nav-item" data-page="sources"><span>◉</span> Sources & settings</button>
-  </nav>
+  <nav class="main-nav" id="nav" aria-label="Moduły aplikacji">
+<button class="nav-item active" data-page="overview"><span>◫</span> Overview</button>
+<button class="nav-item" data-page="watch"><span>◉</span> Always-On Watch</button>
+<button class="nav-item" data-page="planner"><span>◷</span> CO Planner <i id="navPlannerBadge" class="planner-nav-count"></i></button>
+<button class="nav-item" data-page="inspections"><span>☑</span> Inspection readiness</button>
+<button class="nav-item" data-page="academy"><span>✦</span> CO Academy & routines</button>
+<details class="nav-more" id="navMore"><summary>Więcej modułów <span aria-hidden="true">⌄</span></summary><div class="nav-more-list"><button class="nav-item" data-page="feed"><span>≡</span> Intelligence feed <i id="navUnread"></i></button>
+<button class="nav-item" data-page="saved"><span>◇</span> Saved & notes</button>
+<button class="nav-item" data-page="practice"><span>◈</span> Inspector practice & AI</button>
+<button class="nav-item" data-page="learning"><span>▤</span> Knowledge centre</button>
+<button class="nav-item" data-page="sources"><span>◉</span> Sources & settings</button></div></details></nav>
   <div class="sidebar-bottom"><div class="divider"></div><div class="side-label">WATCH AREAS</div><div class="side-topics"><span>Chemical cargo</span><span>SIRE 2.0</span><span>Cyprus flag</span><span>Paris MoU</span><span>SOLAS / MARPOL</span></div><div class="side-version">v1.6 · Chrome · Study simulator</div></div>
  </aside>
  <main class="main">
@@ -31,9 +30,11 @@
       <button class="launch-card" data-action="open-inspections"><span class="launch-icon">☑</span><span><b>Prepare for PSC · SIRE 2.0 · CDI</b><small>64 shipboard self-checks · local evidence notes</small></span><span class="launch-arrow">↗</span></button>
       <button class="launch-card" data-action="open-academy"><span class="launch-icon">✦</span><span><b>Become a stronger Chief Officer</b><small>12 scenario-based lessons · 5 onboard routines</small></span><span class="launch-arrow">↗</span></button>
     </div>
-    <div class="glass-card practice-overview"><div><div class="card-eyebrow">FIVE-MINUTE INSPECTION PRACTICE</div><h3>Daily Chief Officer challenge</h3><p>24 practical questions across PSC, SIRE 2.0 and CDI-M, with spaced repetition and verified reference links.</p></div><button class="button-primary" data-action="open-practice">Start inspection practice →</button></div>
+    <details class="dashboard-more"><summary>Ćwiczenia i dodatkowe narzędzia <span aria-hidden="true">⌄</span></summary><div class="dashboard-extra">
+<div class="glass-card practice-overview"><div><div class="card-eyebrow">FIVE-MINUTE INSPECTION PRACTICE</div><h3>Daily Chief Officer challenge</h3><p>24 practical questions across PSC, SIRE 2.0 and CDI-M, with spaced repetition and verified reference links.</p></div><button class="button-primary" data-action="open-practice">Start inspection practice →</button></div>
     <div class="planner-overview glass-card"><div><div class="card-eyebrow">CHIEF OFFICER ACTION BOARD</div><h3>Next actions</h3><p id="plannerPreviewStats" class="planner-sub"></p></div><div id="plannerPreview" class="planner-mini-list"></div><button class="button-outline small" data-action="open-planner">Open CO Planner →</button></div>
-    <div class="section-heading"><div><div class="eyebrow">ACTIONABLE UPDATES</div><h2>Review first</h2></div><button class="text-link" data-action="open-feed">View complete feed →</button></div>
+    </div></details>
+<div class="section-heading"><div><div class="eyebrow">ACTIONABLE UPDATES</div><h2>Review first</h2></div><button class="text-link" data-action="open-feed">View complete feed →</button></div>
     <div id="priorityList" class="news-list"></div>
     <div class="overview-bottom"><div class="glass-card"><div class="card-eyebrow">5-MINUTE BRIEF</div><h3>Before your next port call</h3><p>Use this short professional routine to stay current without spending hours browsing.</p><div class="checkline"><span>01</span> Check flag circulars and PSC campaigns</div><div class="checkline"><span>02</span> Review cargo-specific regulatory topics</div><div class="checkline"><span>03</span> Check vessel QMS, latest official text and voyage requirements</div><button class="text-link" data-action="open-learning">Open learning topics →</button></div><div class="glass-card understated"><div class="card-eyebrow">IMPORTANT BOUNDARY</div><h3>Headlines are not regulations.</h3><p>Priority is an automated keyword score, not an assessment of legal applicability. No effective date or mandatory status is assumed. Always verify original legal instruments, flag circulars and company SMS.</p><div class="verified-line">✓ Original source link on every item</div></div></div>
    </section>

@@ -1,5 +1,5 @@
-/* CO Tanker Intelligence v1.8.2 - offline-first, update-aware app shell */
-const CACHE='co-tanker-intelligence-v1.8.2';
+/* CO Tanker Intelligence v1.9.0 - offline-first, update-aware app shell */
+const CACHE='co-tanker-intelligence-v1.9.0';
 const ROOT=new URL('./',self.registration.scope);
 const PATHS=['./','./index.html','./manifest.webmanifest','./icons/icon192.png','./icons/icon512.png'];
 const SET=new Set(PATHS.map(p=>new URL(p,ROOT).pathname));

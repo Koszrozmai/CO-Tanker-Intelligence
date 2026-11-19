@@ -105,3 +105,100 @@
 .watch-actions .watch-source-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:46px;padding:10px 15px;border-radius:9px;background:#28665f;border:1px solid #69c7b2;color:#f5fffd;font-size:13px;font-weight:800;text-decoration:none;line-height:1.3}
 .watch-actions .watch-source-link:hover,.watch-actions .watch-source-link:focus-visible{background:#357d72;border-color:#95e5d3;color:#fff;outline-offset:3px}
 @media(max-width:560px){.watch-actions .watch-source-link{flex:1 1 100%;width:100%;font-size:14px;padding:13px 15px}.watch-card h3 a.reference-short{font-size:inherit}}
+
+/* UX v1.9: quiet visual hierarchy, all controls/modules retained */
+.nav-more{margin-top:8px;border-top:1px solid #2b4355;padding-top:8px}
+.nav-more>summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:12px;color:#b1d5cd;font-weight:750;font-size:12px;border-radius:9px}
+.nav-more>summary::-webkit-details-marker,.dashboard-more>summary::-webkit-details-marker{display:none}
+.nav-more>summary:hover,.nav-more[open]>summary{background:#18313e}
+.nav-more[open]>summary span,.dashboard-more[open]>summary span{transform:rotate(180deg)}
+.nav-more-list{display:grid;gap:5px;padding-top:7px}
+.nav-more-list .nav-item{width:100%}
+.dashboard-more{border:1px solid #304858;background:#112235;border-radius:12px;margin:15px 0}
+.dashboard-more>summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:50px;padding:13px 17px;color:#b4dbd2;font-weight:740;font-size:13px}
+.dashboard-more[open]>summary{border-bottom:1px solid #304858}
+.dashboard-extra{display:grid;gap:12px;padding:13px}
+.dashboard-extra>.glass-card{margin:0}
+.sidebar{width:240px;min-width:240px;padding:20px 12px 15px}
+.brand{padding:2px 9px 17px}
+.ship-profile{margin-bottom:16px}
+.nav-item{padding:11px 12px}
+.topbar{min-height:82px;padding-top:15px;padding-bottom:15px}
+.main-content{padding-top:22px}
+.hero{min-height:0;padding:22px 26px;margin-bottom:14px}
+.hero h2{font-size:clamp(24px,2.5vw,34px);margin:8px 0}
+.hero p{margin-bottom:14px}
+.hero-graphic{opacity:.25}
+.metrics{gap:9px}
+.metric{padding:13px 15px}
+.metric strong{font-size:28px;margin:5px 0 2px}
+.metric small{font-size:10px}
+.quick-launch{gap:10px;margin-top:13px}
+.launch-card{padding:13px 15px;min-height:70px}
+.launch-icon{width:36px;height:36px}
+.section-heading{margin-top:23px}
+.watch-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:21px}
+.watch-layout>div{min-width:0;max-width:970px}
+.watch-layout h2{font-size:19px}
+.watch-tools{display:grid;grid-template-columns:minmax(150px,215px) minmax(180px,1fr) auto;align-items:end;gap:9px;max-width:970px}
+.watch-tools .watch-field{min-width:0}
+.watch-tools #watchMarkAll{white-space:normal;min-height:43px;font-size:11px}
+.watch-card{padding:16px 18px;gap:8px}
+.watch-card h3{font-size:16px;line-height:1.4}
+.watch-summary{font-size:14px;line-height:1.6}
+.watch-card .micro{color:#adbfcc}
+.watch-actions{gap:9px}
+.watch-actions button{min-height:42px}
+.watch-status{font-size:12px;padding:11px 13px}
+.glass-card{padding:18px 20px}
+.nav-more summary:focus-visible,.dashboard-more summary:focus-visible,.mobile-module-jump select:focus-visible{outline:3px solid #8ce0cd;outline-offset:2px}
+@media(max-width:1100px){.watch-tools{grid-template-columns:minmax(130px,1fr) minmax(180px,2fr)}.watch-tools #watchMarkAll{grid-column:1/-1;justify-self:start}}
+@media(max-width:900px){
+ .app{display:block}
+ .sidebar{position:sticky;top:0;z-index:50;display:flex!important;flex-direction:row;align-items:center;gap:10px;width:100%;min-width:0;height:auto;min-height:66px;padding:8px 12px;border:0;border-bottom:1px solid #31505e;background:#0a1728;box-shadow:0 6px 16px #040c1c66}
+ .sidebar .brand{display:flex!important;align-items:center;gap:8px;margin:0;padding:0;min-width:0;flex:0 1 auto}
+ .sidebar .brand>div:last-child{display:block!important}
+ .sidebar .brand strong{font-size:10px;letter-spacing:.04em;white-space:nowrap}
+ .sidebar .brand small{display:none!important}
+ .sidebar .brand-icon{height:31px;width:31px;font-size:23px;flex-shrink:0}
+ .sidebar .ship-profile,.sidebar .sidebar-bottom,.sidebar .main-nav{display:none!important}
+ .sidebar .mobile-module-jump{display:flex!important;flex:1 1 0;width:auto;min-width:0;margin:0;padding:0;gap:0;font-size:0;letter-spacing:0}
+ .sidebar .mobile-module-jump select{width:100%;min-width:0;max-width:100%;font-size:14px;font-weight:750;min-height:44px;border-radius:9px;background:#1b3748;border:1px solid #42727a;color:#effaf8;padding:9px 10px}
+ .topbar{min-height:58px;padding:12px 14px;gap:8px}
+ .topbar .eyebrow{display:none}
+ .topbar h1{font-size:18px;margin:0}
+ .topbar .top-actions #lastSync{display:none}
+ .topbar .top-actions button{min-height:39px;font-size:11px;padding:7px 9px}
+ .mobile-hint{display:none}
+ .main-content{padding:14px 13px 30px!important}
+ .hero{padding:17px 18px!important;margin-bottom:10px}
+ .hero h2{font-size:24px!important}
+ .hero p{font-size:12px}
+ .metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .metric{padding:11px 12px!important}
+ .metric strong{font-size:25px}
+ .quick-launch{grid-template-columns:1fr!important}
+ .launch-card{min-height:60px;padding:11px 13px}
+ .dashboard-more>summary{padding:14px}
+ .section-heading{flex-wrap:wrap;gap:9px}
+ .section-heading h2{font-size:20px}
+ .watch-layout{grid-template-columns:1fr!important;gap:18px}
+ .watch-tools{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+ .watch-tools #watchMarkAll{grid-column:1/-1;justify-self:start;min-height:39px}
+ .watch-card{padding:14px;gap:7px}
+ .watch-card h3{font-size:15px}
+ .watch-summary{font-size:14px;line-height:1.55}
+ .watch-status{margin-top:8px}
+ .glass-card{padding:15px}
+}
+@media(max-width:490px){
+ .sidebar{padding:7px 10px;gap:8px}
+ .sidebar .brand{gap:5px}
+ .sidebar .brand strong{font-size:9px}
+ .sidebar .brand-icon{width:29px;height:29px;font-size:22px}
+ .sidebar .mobile-module-jump select{font-size:13px;padding-left:8px}
+ .topbar h1{font-size:16px}
+ .watch-tools{grid-template-columns:minmax(0,1fr)}
+ .watch-tools #watchMarkAll{grid-column:1}
+ .watch-actions .watch-source-link{flex-basis:100%}
+}

@@ -1022,3 +1022,36 @@ Każda kolejna wersja ma:
 **Priorytet nadrzędny: bezpieczeństwo, poprawność merytoryczna, wygoda codziennego użytkowania i rzeczywista pomoc w rozwoju profesjonalnego Chief Officera.**
 
 Przejdź od analizy do wykonania rzeczywistych ulepszeń i dostarcz kolejną działającą wersję programu, wraz z wynikami testów i jasnym opisem zmian. **Docelowym miernikiem sukcesu jest to, czy agent sam regularnie wykrywa faktyczne nowości, proponuje użyteczne treści edukacyjne i pokazuje je użytkownikowi z poprawnymi źródłami po ponownym otwarciu aplikacji — bez potrzeby ręcznego uruchamiania monitoringu.**
+
+
+---
+
+## MASTER UX STANDARD v2.2 — UPROSZCZENIE BEZ UTRATY OPCJI (19 listopada 2026)
+
+**Priorytet użytkownika:** CO Tanker Intelligence ma wiele pożytecznych możliwości, ale obecny interfejs jest zbyt skomplikowany i przeładowany. Użytkownik wymaga zdecydowanie prostszego, bardziej czytelnego, przejrzystego i intuicyjnego UI **z zachowaniem wszystkich istniejących funkcji**. Traktuj to jako twarde wymaganie każdej kolejnej modernizacji, nie jednorazową kosmetykę.
+
+### Nienaruszalność funkcji i danych
+- Nie usuwaj, nie wyłączaj i nie upraszczaj merytorycznie żadnego modułu ani funkcji: Always-On Watch, źródeł, filtrów, odnośników do oryginałów, wyszukiwania, oznaczeń przeczytanych, zapisywania, szkolenia technicznego, inspekcji, Academy, ćwiczeń, centrum wiedzy, eksportu/importu, ustawień, pracy offline ani (gdzie występuje) CO Planner.
+- Uprość widok przez hierarchię, grupowanie i rozwijanie rzadziej używanych narzędzi. Każda istniejąca opcja musi pozostać łatwo odnajdywalna, a działania masowe powinny być wyraźnie odróżnione od codziennych.
+- Nie zmieniaj identyfikatorów kontrolek i kluczy localStorage bez pełnej migracji. Zachowaj notatki, historię, ustawienia, dane offline oraz format backupu.
+
+### Projektuj dla Chief Officera, nie dla programisty
+1. **Najpierw pilne sprawy i najważniejsze czynności.** Ekran początkowy: krótki briefing, stan aktualizacji, maksimum 3–5 głównych dróg działania. Unikaj powielania tych samych przycisków, banerów i rozbudowanych opisów.
+2. **Jedna nawigacja na telefonie.** Nie wyświetlaj jednocześnie wyboru modułu i drugiego poziomego menu z tymi samymi sekcjami. Na desktopie podstawowe moduły mogą pozostać widoczne, a kolejne pod „Więcej modułów”. Każda sekcja musi nadal być osiągalna.
+3. **Treść ma pierwszeństwo.** Na ekranie wpisu: tytuł, źródło/status, krótka istotna treść, wyraźny przycisk do oryginalnego artykułu. Każdy skrót ma prowadzić do autentycznego adresu źródła, jeżeli taki istnieje; nie fabrykuj linków.
+4. **Progresywne ujawnianie opcji.** Eksperckie filtry, ustawienia i długie formularze zamknij w logicznych, dobrze nazwanych panelach. Nie chowaj krytycznych ostrzeżeń o bezpieczeństwie, zakresie obowiązywania przepisów ani niepewności źródła.
+5. **Zrozumiały język.** Przyciski z jednoznacznym czasownikiem, spójne nazwy, proste podtytuły; unikaj niezrozumiałych skrótów poza terminologią morską niezbędną CO.
+
+### Standard urządzeń, wyglądu i dostępności
+- Mobile-first: Samsung/Android PWA i Chrome na Windows. Sprawdzaj 320/360/390/430/768/1024/1440 px, bez poziomego przewijania, bez zasłoniętych filtrów i z krótkim nagłówkiem.
+- Tekst treści zasadniczo co najmniej 14 px, cele dotykowe około 44 px lub większe, wyraźny focus, sensowny kontrast, wygodne odstępy. Zachowaj nawigację klawiaturą i czytniki ekranu.
+- Mniej obramowań i ozdobników; kolor tylko dla znaczenia, np. ważność/ryzyko/stany. Stała hierarchia: nagłówek → najważniejsze dane → jedno główne działanie → działania dodatkowe.
+- Codzienna praca: w ciągu 10 sekund użytkownik rozumie, co nowe; ważny moduł otwiera 1 dotknięciem, typowe zadanie wykonuje w 1–3 krokach.
+
+### Warunki odbioru każdej modernizacji
+- Sprawdź automatycznie, że wszystkie moduły, identyfikatory pól, źródła, przyciski, filtry i funkcje istnieją po zmianie; porównaj z wersją poprzednią. Nie akceptuj regresji.
+- Testuj także działanie przy zawężonym ekranie, ponownym otwarciu PWA, braku sieci, powrocie internetu, nawigacji bezpośrednim linkiem, zapisie/odczycie i imporcie/eksporcie.
+- Nie deklaruj testu na fizycznym Samsungu, jeśli zrobiono jedynie analizę kodu i automatyczne testy.
+- Zachowaj kompletną wiedzę, kontekst oraz obowiązujące oficjalne przepisy IMO/MARPOL/SOLAS/IBC, SMS, SIRE 2.0, CDI-M i PSC. UI ma być prostsze, a kontrola techniczna co najmniej tak samo dokładna.
+
+**Nadrzędna zasada: „UPRASZCZAJ DROGĘ DO FUNKCJI, NIE FUNKCJE”.**

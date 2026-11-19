@@ -31,7 +31,7 @@ function pageName(p){return {overview:'Command overview',feed:'Intelligence feed
 function showPage(p){
  if(!['overview','feed','saved','learning','inspections','academy','sources','planner','practice','watch'].includes(p))p='overview';
  page=p;if(el('mobileJump'))el('mobileJump').value=p;location.hash='#'+p;document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id==='page-'+p));
- document.querySelectorAll('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.page===p));
+ document.querySelectorAll('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.page===p));const moreNav=el('navMore');if(moreNav&&moreNav.querySelector('.nav-item.active'))moreNav.open=true;
  el('pageTitle').textContent=pageName(p);window.scrollTo({top:0,behavior:'instant'});renderPage();
 }
 function empty(target,title,desc){const box=node('div','empty-state');append(box,node('strong','',title),node('p','',desc));target.append(box);}
