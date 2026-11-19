@@ -11,7 +11,10 @@
     "region": "Global",
     "extra_hosts": [
       "wwwcdn.imo.org"
-    ]
+    ],
+    "source_class": "regulator",
+    "editorial_review": "existing approved publisher",
+    "channel": "website"
   },
   {
     "id": "imo_meetings",
@@ -22,7 +25,10 @@
     "selector": "a[href*='/mediacentre/meetingsummaries/pages/']",
     "path_rule": "/mediacentre/meetingsummaries/pages/",
     "topic": "IMO regulatory meetings",
-    "region": "Global"
+    "region": "Global",
+    "source_class": "regulator",
+    "editorial_review": "existing approved publisher",
+    "channel": "website"
   },
   {
     "id": "cyprus",
@@ -34,7 +40,10 @@
     "path_rule": "",
     "topic": "Cyprus Flag",
     "region": "Flag",
-    "xpath": "//tr[td]//td[last()]//a[@href]"
+    "xpath": "//tr[td]//td[last()]//a[@href]",
+    "source_class": "regulator",
+    "editorial_review": "existing approved publisher",
+    "channel": "website"
   },
   {
     "id": "paris",
@@ -46,7 +55,10 @@
     "path_rule": "",
     "topic": "PSC",
     "region": "Europe",
-    "xpath": "//article//h2//a[@href] | //article//h3//a[@href] | //h2[contains(@class,'entry-title')]//a[@href] | //h3[contains(@class,'entry-title')]//a[@href] | //a[contains(@href,'/posts/news/')]"
+    "xpath": "//article//h2//a[@href] | //article//h3//a[@href] | //h2[contains(@class,'entry-title')]//a[@href] | //h3[contains(@class,'entry-title')]//a[@href] | //a[contains(@href,'/posts/news/')]",
+    "source_class": "regulator",
+    "editorial_review": "existing approved publisher",
+    "channel": "website"
   },
   {
     "id": "ocimf",
@@ -60,7 +72,10 @@
     "region": "Global",
     "extra_hosts": [
       "support.ocimf.org"
-    ]
+    ],
+    "source_class": "industry_body",
+    "editorial_review": "existing approved publisher",
+    "channel": "website"
   },
   {
     "id": "cdi",
@@ -71,7 +86,10 @@
     "selector": "a[href*='cdim.wp_news_item']",
     "path_rule": "cdim.wp_news_item",
     "topic": "CDI-M",
-    "region": "Global"
+    "region": "Global",
+    "source_class": "industry_body",
+    "editorial_review": "existing approved publisher",
+    "channel": "website"
   },
   {
     "id": "emsa",
@@ -82,7 +100,10 @@
     "selector": "a[href*='/newsroom/latest-news/']",
     "path_rule": "/newsroom/latest-news/",
     "topic": "EU maritime safety",
-    "region": "Europe"
+    "region": "Europe",
+    "source_class": "regulator",
+    "editorial_review": "existing approved publisher",
+    "channel": "website"
   },
   {
     "id": "intertanko",
@@ -93,7 +114,10 @@
     "selector": "a[href*='/news-desk/']",
     "path_rule": "/news-desk/",
     "topic": "Tanker industry",
-    "region": "Global"
+    "region": "Global",
+    "source_class": "industry_body",
+    "editorial_review": "existing approved publisher",
+    "channel": "website"
   },
   {
     "id": "bimco",
@@ -104,7 +128,10 @@
     "selector": "a[href*='/news-insights/bimco-news/']",
     "path_rule": "/news-insights/bimco-news/",
     "topic": "Maritime industry",
-    "region": "Global"
+    "region": "Global",
+    "source_class": "industry_body",
+    "editorial_review": "existing approved publisher",
+    "channel": "website"
   },
   {
     "id": "mca",
@@ -115,6 +142,81 @@
     "selector": "a[href*='/government/news/'],a[href*='/government/publications/']",
     "path_rule": "/government/",
     "topic": "UK maritime notices",
-    "region": "Europe"
+    "region": "Europe",
+    "source_class": "regulator",
+    "editorial_review": "existing approved publisher",
+    "channel": "website"
+  },
+  {
+    "id": "inside_marine",
+    "name": "Inside Marine · maritime industry",
+    "url": "https://insidemarine.com/feed/",
+    "host": "insidemarine.com",
+    "mode": "feed",
+    "topic": "Maritime industry",
+    "region": "Global",
+    "source_class": "editorial",
+    "channel": "website",
+    "editorial_review": "Established publisher Proactive Publications; verified publisher information, coverage and public news listing"
+  },
+  {
+    "id": "marine_insight",
+    "name": "Marine Insight · maritime news and practice",
+    "url": "https://www.marineinsight.com/feed/",
+    "host": "www.marineinsight.com",
+    "mode": "feed",
+    "topic": "Deck operations / maritime training",
+    "region": "Global",
+    "source_class": "editorial",
+    "channel": "website",
+    "editorial_review": "Named editorial publisher, maritime training and long-running topical coverage"
+  },
+  {
+    "id": "gcaptain",
+    "name": "gCaptain · maritime news",
+    "url": "https://gcaptain.com/feed/",
+    "host": "gcaptain.com",
+    "mode": "feed",
+    "topic": "Maritime incidents / tanker operations",
+    "region": "Global",
+    "source_class": "editorial",
+    "channel": "website",
+    "editorial_review": "Established maritime trade publication with newsroom and continuing reporting"
+  },
+  {
+    "id": "safety4sea",
+    "name": "SAFETY4SEA · safety and regulations",
+    "url": "https://safety4sea.com/feed/",
+    "host": "safety4sea.com",
+    "mode": "feed",
+    "topic": "Maritime safety / vetting",
+    "region": "Global",
+    "source_class": "editorial",
+    "channel": "website",
+    "editorial_review": "Long-running specialist publication with named editorial management; feed access may be restricted"
+  },
+  {
+    "id": "maritime_executive",
+    "name": "The Maritime Executive · maritime news",
+    "url": "https://www.maritime-executive.com/articles.rss",
+    "host": "www.maritime-executive.com",
+    "mode": "feed",
+    "topic": "Maritime news / incidents",
+    "region": "Global",
+    "source_class": "editorial",
+    "channel": "website",
+    "editorial_review": "Established trade publication with published editorial identity"
+  },
+  {
+    "id": "marine_insight_youtube",
+    "name": "Marine Insight · YouTube",
+    "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC__0nIHpSnvXOBVXbF8VGNg",
+    "host": "www.youtube.com",
+    "mode": "feed",
+    "topic": "Deck training / maritime video",
+    "region": "Global",
+    "source_class": "social",
+    "channel": "youtube",
+    "editorial_review": "Publisher-associated public YouTube channel with identifiable channel ID; video content is not regulatory authority"
   }
 ]
