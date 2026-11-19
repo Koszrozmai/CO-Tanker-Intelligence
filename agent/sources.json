@@ -23,12 +23,13 @@
     "host": "www.imo.org",
     "mode": "html",
     "selector": "a[href*='/mediacentre/meetingsummaries/pages/']",
-    "path_rule": "/mediacentre/meetingsummaries/pages/",
+    "path_rule": "/meetingsummaries/",
     "topic": "IMO regulatory meetings",
     "region": "Global",
     "source_class": "regulator",
     "editorial_review": "existing approved publisher",
-    "channel": "website"
+    "channel": "website",
+    "xpath": "//a[contains(translate(@href,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'/meetingsummaries/')]"
   },
   {
     "id": "cyprus",
@@ -52,10 +53,10 @@
     "host": "parismou.org",
     "mode": "html",
     "selector": "article h2 a[href],article h3 a[href],h2.entry-title a[href],h3.entry-title a[href],a[href*='/posts/news/']",
-    "path_rule": "",
+    "path_rule": "/2026/",
     "topic": "PSC",
     "region": "Europe",
-    "xpath": "//article//h2//a[@href] | //article//h3//a[@href] | //h2[contains(@class,'entry-title')]//a[@href] | //h3[contains(@class,'entry-title')]//a[@href] | //a[contains(@href,'/posts/news/')]",
+    "xpath": "//a[contains(@href,'/2026/') and not(contains(@href,'/category/'))] | //article//h2//a[@href] | //article//h3//a[@href]",
     "source_class": "regulator",
     "editorial_review": "existing approved publisher",
     "channel": "website"
@@ -80,16 +81,17 @@
   {
     "id": "cdi",
     "name": "CDI-M news",
-    "url": "https://www.cdim.org/psp/cdim.wp_news",
+    "url": "https://www.cdim.org/",
     "host": "www.cdim.org",
     "mode": "html",
     "selector": "a[href*='cdim.wp_news_item']",
-    "path_rule": "cdim.wp_news_item",
+    "path_rule": "",
     "topic": "CDI-M",
     "region": "Global",
     "source_class": "industry_body",
     "editorial_review": "existing approved publisher",
-    "channel": "website"
+    "channel": "website",
+    "xpath": "//a[contains(@href,'wp_news_item') or contains(@href,'p_inf_number')]"
   },
   {
     "id": "emsa",
@@ -122,16 +124,17 @@
   {
     "id": "bimco",
     "name": "BIMCO news",
-    "url": "https://www.bimco.org/news-insights/bimco-news/",
+    "url": "https://www.bimco.org/news-insights/",
     "host": "www.bimco.org",
     "mode": "html",
     "selector": "a[href*='/news-insights/bimco-news/']",
-    "path_rule": "/news-insights/bimco-news/",
+    "path_rule": "/news-insights/",
     "topic": "Maritime industry",
     "region": "Global",
     "source_class": "industry_body",
     "editorial_review": "existing approved publisher",
-    "channel": "website"
+    "channel": "website",
+    "xpath": "//a[contains(@href,'/news-insights/bimco-news/') or contains(@href,'/news-insights/press-media/press-releases/')]"
   },
   {
     "id": "mca",
