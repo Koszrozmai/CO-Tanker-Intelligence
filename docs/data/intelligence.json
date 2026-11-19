@@ -1,8 +1,25 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-19T13:27:56Z",
+  "generated_at": "2026-11-19T16:11:36Z",
   "collector_status": "PARTIAL",
   "entries": [
+    {
+      "id": "eaacee2b6db80f10a3d88b9f",
+      "source_id": "mca",
+      "source_name": "UK MCA news",
+      "title": "MIN 743 (M+F) Changes to NAVTEX and Maritime Safety Information (MSI) arrangements in the English Channel from 1 January 2027",
+      "url": "https://www.gov.uk/government/publications/min-743-mf-changes-to-navtex-and-maritime-safety-information-msi-arrangements-in-the-english-channel-from-1-january-2027",
+      "topic": "Safety & equipment",
+      "region": "Europe",
+      "published": "2026-11-19",
+      "scope": "listing",
+      "legal_status": "under review",
+      "revision": 1,
+      "changed_at": "2026-11-19T16:11:36Z",
+      "discovered_at": "2026-11-19T16:11:36Z",
+      "last_seen": "2026-11-19T16:11:36Z",
+      "status_label": "Public source listing detected; legal status and entry into force NOT verified"
+    },
     {
       "id": "115435beed79c2bc6e2ed170",
       "source_id": "imo",
@@ -17,7 +34,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -34,7 +51,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -51,7 +68,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -68,7 +85,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -85,7 +102,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -102,7 +119,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -119,7 +136,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -136,7 +153,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -153,7 +170,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -170,7 +187,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -187,7 +204,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -204,7 +221,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -221,7 +238,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -238,7 +255,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -255,7 +272,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -272,7 +289,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -289,7 +306,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -306,7 +323,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -323,7 +340,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -340,7 +357,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -357,7 +374,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -374,7 +391,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -391,7 +408,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -408,7 +425,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -425,7 +442,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -442,7 +459,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -459,7 +476,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -476,7 +493,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -493,7 +510,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -510,7 +527,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -527,7 +544,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -544,7 +561,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -561,7 +578,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -578,7 +595,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -595,7 +612,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -612,7 +629,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -629,7 +646,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -646,7 +663,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -663,7 +680,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -680,7 +697,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -697,7 +714,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -714,7 +731,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -731,7 +748,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -765,7 +782,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -782,7 +799,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -799,7 +816,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -816,7 +833,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -833,7 +850,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -850,7 +867,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -867,7 +884,7 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     },
     {
@@ -884,11 +901,26 @@
       "revision": 1,
       "changed_at": "2026-11-19T09:12:52Z",
       "discovered_at": "2026-11-19T09:12:52Z",
-      "last_seen": "2026-11-19T13:27:56Z",
+      "last_seen": "2026-11-19T16:11:36Z",
       "status_label": "Public source listing detected; legal status and entry into force NOT verified"
     }
   ],
   "lessons": [
+    {
+      "id": "learning-eaacee2b6db80f10a3d88b9f",
+      "source_id": "mca",
+      "source_url": "https://www.gov.uk/government/publications/min-743-mf-changes-to-navtex-and-maritime-safety-information-msi-arrangements-in-the-english-channel-from-1-january-2027",
+      "title": "Research briefing: MIN 743 (M+F) Changes to NAVTEX and Maritime Safety Information (MSI) arrangements in the English Ch",
+      "learning_objective": "Use the linked original publication to determine whether it affects your vessel, crew, equipment, voyage or upcoming inspection.",
+      "questions": [
+        "What does the original publication actually state, and what is only a proposal or news item?",
+        "Does it apply to our chemical/product tanker, flag, trading area and cargo?",
+        "Could this change any Chief Officer preparation or onboard records, subject to the approved SMS and manuals?"
+      ],
+      "status": "GUIDED RESEARCH / NEEDS SOURCE REVIEW",
+      "created_at": "2026-11-19T16:11:36Z",
+      "topic": "Safety & equipment"
+    },
     {
       "id": "learning-115435beed79c2bc6e2ed170",
       "source_id": "imo",
@@ -1623,21 +1655,6 @@
       "status": "GUIDED RESEARCH / NEEDS SOURCE REVIEW",
       "created_at": "2026-11-19T09:12:52Z",
       "topic": "UK maritime notices"
-    },
-    {
-      "id": "learning-055ebbfc88417bc82420ac2f",
-      "source_id": "mca",
-      "source_url": "https://www.gov.uk/government/publications/dft-and-mca-maritime-passenger-accessibility-survey-2024",
-      "title": "Research briefing: DfT and MCA maritime passenger accessibility survey 2024",
-      "learning_objective": "Use the linked original publication to determine whether it affects your vessel, crew, equipment, voyage or upcoming inspection.",
-      "questions": [
-        "What does the original publication actually state, and what is only a proposal or news item?",
-        "Does it apply to our chemical/product tanker, flag, trading area and cargo?",
-        "Could this change any Chief Officer preparation or onboard records, subject to the approved SMS and manuals?"
-      ],
-      "status": "GUIDED RESEARCH / NEEDS SOURCE REVIEW",
-      "created_at": "2026-11-19T09:12:52Z",
-      "topic": "UK maritime notices"
     }
   ],
   "sources": [
@@ -1646,20 +1663,20 @@
       "id": "imo",
       "name": "IMO press briefings",
       "url": "https://www.imo.org/en/mediacentre/pressbriefings/pages/default.aspx",
-      "last_attempt": "2026-11-19T13:27:56Z",
+      "last_attempt": "2026-11-19T16:11:36Z",
       "ok": true,
       "error": null,
       "last_change_detected": "2026-11-19T09:12:52Z",
       "next_attempt": null,
       "consecutive_failures": 0,
       "fetch_status": "ok",
-      "last_success": "2026-11-19T13:27:56Z",
+      "last_success": "2026-11-19T16:11:36Z",
       "entry_count": 8,
       "etag": null,
       "modified": null
     },
     {
-      "deferred": false,
+      "deferred": true,
       "id": "imo_meetings",
       "name": "IMO meeting summaries",
       "url": "https://www.imo.org/en/mediacentre/meetingsummaries/pages/default.aspx",
@@ -1671,7 +1688,7 @@
       "next_attempt": "2026-11-19T17:27:58Z"
     },
     {
-      "deferred": false,
+      "deferred": true,
       "id": "cyprus",
       "name": "Cyprus Flag circulars",
       "url": "https://www.gov.cy/dms/en/documents/circulars-2026/",
@@ -1683,7 +1700,7 @@
       "next_attempt": "2026-11-19T17:27:59Z"
     },
     {
-      "deferred": false,
+      "deferred": true,
       "id": "paris",
       "name": "Paris MoU news",
       "url": "https://parismou.org/posts/news/",
@@ -1699,20 +1716,20 @@
       "id": "ocimf",
       "name": "OCIMF news and resources",
       "url": "https://www.ocimf.org/news-and-events/newsletter",
-      "last_attempt": "2026-11-19T13:27:56Z",
+      "last_attempt": "2026-11-19T16:11:36Z",
       "ok": true,
       "error": null,
       "last_change_detected": "2026-11-19T09:12:52Z",
       "next_attempt": null,
       "consecutive_failures": 0,
       "fetch_status": "ok",
-      "last_success": "2026-11-19T13:27:56Z",
+      "last_success": "2026-11-19T16:11:36Z",
       "entry_count": 10,
       "etag": null,
-      "modified": "Thu, 19 Nov 2026 13:28:02 GMT"
+      "modified": "Thu, 19 Nov 2026 16:11:38 GMT"
     },
     {
-      "deferred": false,
+      "deferred": true,
       "id": "cdi",
       "name": "CDI-M news",
       "url": "https://www.cdim.org/psp/cdim.wp_news",
@@ -1728,37 +1745,37 @@
       "id": "emsa",
       "name": "EMSA latest news",
       "url": "https://www.emsa.europa.eu/newsroom/latest-news.html",
-      "last_attempt": "2026-11-19T13:27:56Z",
+      "last_attempt": "2026-11-19T16:11:36Z",
       "ok": true,
       "error": null,
       "last_change_detected": "2026-11-19T09:12:52Z",
       "next_attempt": null,
       "consecutive_failures": 0,
       "fetch_status": "ok",
-      "last_success": "2026-11-19T13:27:56Z",
+      "last_success": "2026-11-19T16:11:36Z",
       "entry_count": 10,
       "etag": null,
-      "modified": "Thu, 19 Nov 2026 13:28:05 GMT"
+      "modified": "Thu, 19 Nov 2026 16:11:39 GMT"
     },
     {
       "deferred": false,
       "id": "intertanko",
       "name": "INTERTANKO public news",
       "url": "https://www.intertanko.com/news-desk",
-      "last_attempt": "2026-11-19T13:27:56Z",
+      "last_attempt": "2026-11-19T16:11:36Z",
       "ok": true,
       "error": null,
       "last_change_detected": "2026-11-19T09:12:52Z",
       "next_attempt": null,
       "consecutive_failures": 0,
       "fetch_status": "ok",
-      "last_success": "2026-11-19T13:27:56Z",
+      "last_success": "2026-11-19T16:11:36Z",
       "entry_count": 11,
       "etag": null,
-      "modified": "Thu, 19 Nov 2026 13:28:08 GMT"
+      "modified": "Thu, 19 Nov 2026 16:11:41 GMT"
     },
     {
-      "deferred": false,
+      "deferred": true,
       "id": "bimco",
       "name": "BIMCO news",
       "url": "https://www.bimco.org/news-insights/bimco-news/",
@@ -1774,19 +1791,19 @@
       "id": "mca",
       "name": "UK MCA news",
       "url": "https://www.gov.uk/government/organisations/maritime-and-coastguard-agency",
-      "last_attempt": "2026-11-19T13:27:56Z",
+      "last_attempt": "2026-11-19T16:11:36Z",
       "ok": true,
       "error": null,
-      "last_change_detected": "2026-11-19T09:12:52Z",
+      "last_change_detected": "2026-11-19T16:11:36Z",
       "next_attempt": null,
       "consecutive_failures": 0,
       "fetch_status": "ok",
-      "last_success": "2026-11-19T13:27:56Z",
+      "last_success": "2026-11-19T16:11:36Z",
       "entry_count": 13,
-      "etag": "W/\"6b943f5b763ee27bb8ffcfb8605dcf82\"",
+      "etag": "W/\"006db283b656ee420e07d1877fbc47f5\"",
       "modified": null
     }
   ],
-  "new_links_this_run": 0,
+  "new_links_this_run": 1,
   "disclaimer": "Discovery from public listing pages only. All legal status, effective dates, applicability and onboard actions require verification."
 }
