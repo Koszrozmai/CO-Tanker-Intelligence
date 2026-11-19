@@ -31,6 +31,12 @@ class ProvenanceTests(unittest.TestCase):
         self.assertTrue(relevant_to_co('Tanker cargo mooring and port safety',source))
         self.assertFalse(relevant_to_co('Celebrity cooking tips and sports',source))
 
+    def test_cdi_terminal_marketing_excluded(self):
+        cdi={'id':'cdi','source_class':'industry_body'}
+        self.assertFalse(relevant_to_co('CDI Welcomes Terminal Operator New Member', cdi))
+        self.assertFalse(relevant_to_co('New CDI-T report for terminal Rotterdam', cdi))
+        self.assertTrue(relevant_to_co('CDI Announces Alternative Energy & Power Supply Questionnaire', cdi))
+
     def test_discovery_does_not_autoapprove(self):
         source='https://safety4sea.com/'
         raw='<a href="https://marineexample.org/">Maritime training and tanker safety</a><a href="https://facebook.com/example">Facebook</a><a href="http://unsafe.example/">Maritime updates</a>'
