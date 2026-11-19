@@ -100,11 +100,24 @@ function article(e) {
     card.append(detail);
   }
   const actions=element('div','watch-actions');
+  // The feed provides the original publisher URL. Never guess a missing link.
+  const sourceLink=link(e.url,e.scope==='listing'?'Otwórz publikację u źródła ↗':'Czytaj pełne źródło ↗');
+  if(sourceLink.tagName==='A') {
+    sourceLink.classList.add('watch-source-link');
+    sourceLink.setAttribute('aria-label','Otwórz oryginalne źródło: '+e.title);
+    sourceLink.title='Otwórz oryginalną publikację w nowej karcie';
+    card.classList.add('watch-openable');
+    // Tapping the summary opens the publisher; review/save buttons keep their own actions.
+    card.addEventListener('click',event=>{
+      if(event.target?.closest?.('a,button,summary,details,input,select,textarea'))return;
+      sourceLink.click();
+    });
+  }
   const read=watch.seen.includes(keyFor(e)),saved=watch.saved.includes(e.id);
   const readBtn=button(read?'Reviewed':'Mark reviewed',()=>{changeSet('seen',keyFor(e));save();render();});
   const saveBtn=button(saved?'Saved':'Save',()=>{changeSet('saved',e.id);save();render();});
   readBtn.setAttribute('aria-pressed',String(read));saveBtn.setAttribute('aria-pressed',String(saved));
-  actions.append(readBtn,saveBtn);card.append(actions);return card;
+  actions.append(sourceLink,readBtn,saveBtn);card.append(actions);return card;
 }
 function lesson(l) {
   const card=element('article','watch-card');
