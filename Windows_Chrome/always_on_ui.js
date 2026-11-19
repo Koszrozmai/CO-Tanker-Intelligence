@@ -140,6 +140,35 @@ function renderLessons() {
   if(!list.length)root.append(element('p','subtle','No new guided study is available. The CO Academy remains available offline.'));
   if(list.length>lessonLimit)root.append(button('Show more study cards',()=>{lessonLimit+=12;renderLessons();}));
 }
+
+function renderBriefPreview(d) {
+  const root=$('watchPreview');if(!root)return;
+  root.replaceChildren();
+  const timestamp=e=>Date.parse(changedAt(e)||e.published||'')||0;
+  const latest=[...d.entries].filter(e=>{
+    try {const u=new URL(e.url);return u.protocol==='https:'&&!u.username&&!u.password;}catch{return false;}
+  }).sort((a,b)=>timestamp(b)-timestamp(a)).slice(0,3);
+  if(!latest.length) {
+    root.append(element('p','briefing-preview-empty','Brak publikacji z poprawnym odnośnikiem. Sprawdź połączenie źródeł.'));
+    return;
+  }
+  for(const e of latest) {
+    const card=element('article','briefing-preview-item');
+    const shortDate=(e.published||e.updated_at_source||changedAt(e)||'').slice(0,10);
+    const meta=[e.source_name||e.source_id,e.topic,shortDate].filter(Boolean).join(' · ');
+    const heading=element('h3','briefing-preview-headline');
+    const sourceLink=link(e.url,e.title);
+    heading.append(sourceLink);
+    card.append(element('div','briefing-preview-meta',meta),heading);
+    if(e.summary)card.append(element('p','briefing-preview-summary',e.summary));
+    if(sourceLink.tagName==='A'){
+      card.addEventListener('click',ev=>{if(!ev.target?.closest?.('a,button,input,select,summary'))sourceLink.click();});
+      card.title='Otwórz pełną publikację w oryginalnym źródle';
+    }
+    root.append(card);
+  }
+}
+
 function render() {
   if(!$('watchStatus'))return;
   const d=feedData(),headline=statusLine(d);
@@ -149,6 +178,7 @@ function render() {
   const unread=d.entries.filter(e=>!watch.seen.includes(keyFor(e))).length;
   const recent=(!isReference(d)&&baseline)?d.entries.filter(e=>changedAt(e)>baseline).length:null;
   const short=$('watchOverview');if(short)short.textContent=headline+' · '+(recent===null?unread+' unread':recent+' new or revised since your previous visit');
+  renderBriefPreview(d);
   $('watchCounts').textContent=(isReference(d)?'Reference collection':recent===null?'First visit on this device':recent+' new or revised since your last visit')+' · '+unread+' unread · '+d.lessons.length+' study cards';
   const briefing=d.briefing;
   $('watchBrief').textContent=briefing?'Daily briefing · '+briefing.day+' UTC · '+briefing.added+' discovered · '+briefing.amended+' revised · '+briefing.checks+' recorded runs':'';

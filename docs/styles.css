@@ -236,3 +236,88 @@
  .watch-tools #watchMarkAll{grid-column:1}
  .watch-actions .watch-source-link{flex-basis:100%}
 }
+
+
+/* UI v2.0 — compact reading-first layout. Progressive disclosure preserves every control. */
+.main-content{max-width:1230px;padding-top:20px}
+.sidebar{width:224px;min-width:224px}
+.sidebar .ship-profile{margin:0 5px 13px;padding:9px 10px}
+.sidebar .sidebar-bottom .side-topics,.sidebar .sidebar-bottom .side-label{display:none}
+.sidebar .sidebar-bottom .divider{margin:12px 0}
+.nav-item{font-weight:650;line-height:1.35}
+.nav-more>summary{font-size:13px}
+.topbar{min-height:68px;padding-top:12px;padding-bottom:12px}
+.topbar h1{font-size:21px}
+.hero{min-height:0;background:#132c3b;border-color:#335261;box-shadow:none;padding:16px 20px;margin:0 0 14px}
+.hero h2{font-size:clamp(20px,2.1vw,27px);margin:3px 0 5px;letter-spacing:-.025em}
+.hero p{max-width:none;margin:0 0 10px;font-size:12px;line-height:1.45}
+.hero-graphic{display:none}
+.hero-overline{font-size:10px;letter-spacing:.1em}
+.hero-buttons{gap:8px}
+.hero-buttons .button-primary,.hero-buttons .button-ghost{min-height:39px;padding:8px 12px;font-size:12px}
+.metrics{grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.metric{padding:11px 14px;border-color:#2c4557;background:#112235}
+.metric strong{font-size:27px;line-height:1.15;margin:5px 0 0}
+.metric-label{font-size:10px;letter-spacing:.03em}
+.metric small{font-size:10px}
+.quick-launch{gap:10px;margin-top:12px}
+.launch-card{padding:11px 13px;min-height:64px}
+.launch-card small{font-size:11px;line-height:1.35}
+.section-heading{margin:20px 0 10px}
+.section-heading h2{font-size:19px}
+.watch-overview{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:12px 15px!important;margin-bottom:14px}
+.watch-overview p{margin:3px 0 0}
+.watch-overview .button-outline{min-height:39px}
+.briefing-preview{margin:0 0 15px}
+.briefing-preview .section-heading{margin:0 0 9px;align-items:center}
+.briefing-preview .section-heading a{font-size:12px;color:#a4f1de;text-decoration:none;font-weight:750}
+.watch-preview-list{display:grid;gap:8px}
+.briefing-preview-item{position:relative;background:#142739;border:1px solid #365164;border-radius:10px;padding:12px 15px;transition:border-color .15s,background .15s}
+.briefing-preview-item:hover,.briefing-preview-item:focus-within{border-color:#8adccb;background:#193246}
+.briefing-preview-meta{font-size:11px;color:#c0d3df;font-weight:630;margin-bottom:4px}
+.briefing-preview-headline{font-size:15px;line-height:1.4;letter-spacing:-.01em;margin:0;font-weight:760}
+.briefing-preview-headline a{color:#effffb;text-decoration:none}
+.briefing-preview-headline a:hover{text-decoration:underline}
+.briefing-preview-summary{margin:4px 0 0;color:#c1d0db;font-size:12px;line-height:1.45;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.briefing-preview-empty{padding:14px;border:1px dashed #406075;border-radius:9px;color:#bcd1db}
+.watch-study-more{margin-top:3px;background:#102233;border:1px solid #385365;border-radius:11px;padding:0 12px 12px}
+.watch-study-more>summary,.feed-filters-more>summary{cursor:pointer;list-style:none;font-size:13px;font-weight:750;min-height:44px;display:flex;align-items:center;color:#a8e8dc}
+.watch-study-more>summary::-webkit-details-marker,.feed-filters-more>summary::-webkit-details-marker{display:none}
+.watch-study-more>summary:after,.feed-filters-more>summary:after{content:"▾";margin-left:auto;color:#a8e8dc}
+.watch-study-more[open]>summary:after,.feed-filters-more[open]>summary:after{content:"▴"}
+.filters-simple{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.filters-simple .search-input{flex:1 1 340px;max-width:none}
+.filters-simple .toggle-checkbox{font-size:12px;min-height:38px}
+.feed-filters-more{flex:0 0 auto;border:1px solid #375667;background:#142a3c;border-radius:9px;padding:0 10px;min-width:155px}
+.feed-filters-more>summary{min-height:39px}
+.feed-filters-panel{display:flex;gap:9px;flex-wrap:wrap;padding:3px 0 10px}
+.feed-filters-panel select{min-width:160px;flex:1}
+.filters-simple .feed-filters-more[open]{flex:1 1 100%}
+.watch-card{border-color:#344e60}
+.watch-card h3{line-height:1.4}
+.watch-actions .watch-source-link{min-height:43px}
+button:focus-visible,a:focus-visible,select:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #8ce0cd;outline-offset:2px}
+@media(max-width:900px){
+ .main-content{padding-top:12px!important}
+ .topbar{padding:9px 12px;min-height:54px}
+ .hero{padding:13px 14px!important}
+ .hero h2{font-size:21px!important}
+ .hero-overline{font-size:9px}
+ .metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .metric{padding:10px 12px!important}
+ .metric strong{font-size:24px}
+ .watch-overview{padding:10px 12px!important;flex-wrap:wrap}
+ .briefing-preview-headline{font-size:15px}
+ .briefing-preview-item{padding:12px}
+ .watch-study-more{padding:0 10px 10px}
+ .filters-simple .search-input{flex:1 1 100%}
+ .filters-simple .feed-filters-more{flex:1 1 100%}
+ .feed-filters-panel select{width:100%;flex:1 1 100%}
+}
+@media(max-width:490px){
+ .hero-buttons{display:grid;grid-template-columns:1fr 1fr}
+ .hero-buttons .button-ghost:last-child{grid-column:1/-1}
+ .watch-overview .button-outline{width:100%}
+ .briefing-preview-summary{-webkit-line-clamp:2}
+ .filters-simple .toggle-checkbox{min-height:38px}
+}
