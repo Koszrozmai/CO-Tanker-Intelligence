@@ -24,3 +24,19 @@ Wykorzystuj istniejący harmonogram pobierania źródeł. Dla każdego istotnego
 ### Weryfikacja wydania
 
 Przed publikacją przejdź od pulpitu do źródła oraz od biblioteki do oceny odpowiedzi. Sprawdź polskie wyszukiwanie, ID pytania, filtry chemical/oil, kolejne pytania, zapis oceny i odzyskanie kopii. Otwórz PWA ponownie bez sieci po pierwszym załadowaniu. Otwórz osobno samodzielny plik HTML. Sprawdź ikonę w manifeście i w interfejsie. W raporcie podaj wykonane testy, identyfikator zmiany i wynik wdrożenia. Ograniczenia sprawdzeń podawaj wprost.
+
+### Nadzór nad źródłami v2.4 — oficjalne, branżowe, redakcyjne i społecznościowe
+
+Nie ograniczaj agenta do administracji i konwencji. Utrzymuj osobno:
+- **OFICJALNE — organ / administracja**: IMO, flag administration, PSC, urzędy, agencje publiczne. Sam komunikat urzędu nie jest automatycznie wiążącym przepisem; sprawdzaj dokument i wejście w życie.
+- **ORGANIZACJA BRANŻOWA — nie stanowi prawa**: OCIMF, CDI-M, INTERTANKO, BIMCO itp. Publikacje mogą opisywać własne normy i programy inspekcji, ale nie należy mylić ich z prawem państwowym.
+- **MEDIA BRANŻOWE — nieoficjalne**: Inside Marine, Marine Insight, gCaptain, SAFETY4SEA, The Maritime Executive i kolejne rzetelne czasopisma. Informacje mogą być przydatne, lecz kontrowersyjne lub prawne twierdzenia sprawdzaj w pierwotnych dokumentach.
+- **SOCIAL / YOUTUBE — nieoficjalne**: publiczne, identyfikowalne konta instytucji, redakcji i ekspertów. Liczba obserwujących nie potwierdza rzetelności. Zawsze podaj wydawcę, typ kanału, oryginalny link i status weryfikacji.
+
+Każdy wpis, także na pulpicie i w archiwum Watch, musi mieć czytelną etykietę rodzaju źródła, nazwę wydawcy, link do oryginału i status „lista/RSS” albo „sprawdzono oryginał”. Nigdy nie podnoś automatycznie statusu wpisu tylko dlatego, że źródło jest na liście. W przypadku zgodności kilku wtórnych doniesień o nowym obowiązku poszukaj właściwej publikacji prawnej; brak jej dostępności oznacz jako nieweryfikowany.
+
+Co każde zaplanowane uruchomienie monitoringu szukaj kandydatów do rozbudowy rejestru, korzystając z publicznych witryn już zatwierdzonych wydawców. **Kandydat nie staje się aktywnym źródłem bez przeglądu redakcyjnego i technicznego.** Oceń tożsamość wydawcy, autorstwo, historię sprostowań, transparentność, zakres tematów, bezpieczeństwo HTTPS, warunki dostępu i działanie RSS/API. Prowadź jawny rejestr kandydatów z uzasadnieniem i przyczynami odrzucenia. Zapobiegaj zbieraniu niepowiązanego marketingu, informacji o celebrytach i materiałów bez znaczenia dla CO.
+
+Facebook i YouTube obsługuj wyłącznie w ramach publicznie dostępnych, zgodnych z zasadami platform metod, RSS/API lub zatwierdzonych adresów. Brak dostępu, 403/429 czy niedostępny kanał ujawniaj zamiast obchodzić zabezpieczenia. Nie przechowuj w GitHubie prywatnych danych statku ani członków załogi. Trzygodzinny harmonogram GitHub Actions jest próbą sprawdzenia, nie gwarancją stałej obserwacji.
+
+Każda zmiana kodu musi przejść testy kolektora, źródeł i responsywnego Watch. Nie usuwaj modułów kalkulatorów, SIRE, planera ani istniejących funkcji. Priorytet: praktyczne informacje dla Chief Officera chemikaliowca, ich kontekst i bezpieczna ocena wiarygodności.
