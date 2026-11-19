@@ -1,7 +1,7 @@
 # SIRE 2.0 Deck Trainer — aktualizacja programu
 
 ## Podstawa
-Źródło: dwa tomy OCIMF SIRE 2.0 Question Library, version 1.0 (January 2022), przesłane przez użytkownika. Zidentyfikowano 258 niepowtarzających się pytań dotyczących pokładu, nawigacji, zarządzania, bezpieczeństwa, MARPOL, operacji ładunkowych i balastowych, cumowania i kotwiczenia, fotografii oraz działań w lodzie.
+Źródło: dwa tomy OCIMF SIRE 2.0 Question Library, version 1.0 (January 2022), przesłane przez użytkownika. Zidentyfikowano 252 niepowtarzające się pytania dotyczących pokładu, nawigacji, zarządzania, bezpieczeństwa, MARPOL, operacji ładunkowych i balastowych, cumowania i kotwiczenia, fotografii oraz działań w lodzie.
 
 Nie publikujemy pełnych rozdziałów dokumentów; aplikacja przechowuje numer, krótki tytuł, treść pytania w skróconej postaci oraz krótkie, źródłowe fragmenty dotyczące celu, działań inspektora, oczekiwanych dowodów i potencjalnych obserwacji. Dodatkowe wskazówki treningowe są jawnie odróżnione od materiału OCIMF.
 
