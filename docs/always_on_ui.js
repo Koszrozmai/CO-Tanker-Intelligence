@@ -81,9 +81,21 @@ function passes(e,d) {
   if(view==='inspection')return /sire|vetting|psc|inspec|cdi/i.test(e.topic+' '+e.title);
   return true;
 }
+function provenanceLabel(e) {
+  const labels={regulator:'OFICJALNE · urząd / administracja',
+    industry_body:'ORGANIZACJA BRANŻOWA · nie jest prawem',
+    editorial:'MEDIA BRANŻOWE · nieoficjalne',
+    social:'SOCIAL / YOUTUBE · nieoficjalne'};
+  return e.source_label || labels[e.source_class] || 'POCHODZENIE NIEPOTWIERDZONE';
+}
+function provenanceChip(e) {
+  const node=element('span','watch-chip watch-provenance',provenanceLabel(e));
+  node.title=e.publisher_review||'Weryfikuj informacje w źródle pierwotnym';
+  return node;
+}
 function article(e) {
   const card=element('article','watch-card'),head=element('div','watch-card-head');
-  head.append(element('span','watch-chip',e.source_name||e.source_id),element('span','watch-chip',e.topic||'General'));
+  head.append(provenanceChip(e),element('span','watch-chip',e.source_name||e.source_id),element('span','watch-chip',e.topic||'General'));
   const title=element('h3','');title.append(link(e.url,e.title));
   card.append(head,title,element('p','micro',e.status_label||'Listing only · original pending'));
   if(e.summary)card.append(element('p','watch-summary',e.summary));
@@ -155,7 +167,7 @@ function renderBriefPreview(d) {
   for(const e of latest) {
     const card=element('article','briefing-preview-item');
     const shortDate=(e.published||e.updated_at_source||changedAt(e)||'').slice(0,10);
-    const meta=[e.source_name||e.source_id,e.topic,shortDate].filter(Boolean).join(' · ');
+    const meta=[provenanceLabel(e),e.source_name||e.source_id,e.topic,shortDate].filter(Boolean).join(' · ');
     const heading=element('h3','briefing-preview-headline');
     const sourceLink=link(e.url,e.title);
     heading.append(sourceLink);
@@ -190,7 +202,8 @@ function render() {
   for(const s of d.sources) {
     const row=element('div','watch-source'),info=element('div','');
     const label=s.fetch_status==='not_checked'?'Awaiting check':s.ok?'Available':'Failed';
-    info.append(element('strong','',s.name||s.id),element('p','micro','Last success · '+date(s.last_success)+(s.last_attempt?' | Attempt · '+date(s.last_attempt):'')));
+    info.append(element('strong','',s.name||s.id),element('p','micro',provenanceLabel(s)),
+      element('p','micro','Last success · '+date(s.last_success)+(s.last_attempt?' | Attempt · '+date(s.last_attempt):'')));
     if(s.detail||s.error)info.append(element('p','micro',s.detail||s.error));
     row.append(info,element('span',s.ok?'status-ok':'status-fail',label));sources.append(row);
   }
