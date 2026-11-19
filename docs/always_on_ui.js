@@ -5,6 +5,7 @@ const HOSTED='https://co-tanker-intelligence-watch.koszykrozmaity.chatgpt.site';
 const extension=location.protocol==='chrome-extension:';
 const localFile=location.protocol==='file:' || new URLSearchParams(location.search).has('standalone');
 const defaultURL=extension?HOSTED+'/data/intelligence.json':localFile?'':'./data/intelligence.json';
+const expectedPublicURL=new URL('./data/intelligence.json',location.href).href;
 const $=id=>document.getElementById(id);
 function element(tag,css,value) {
   const result=document.createElement(tag);
@@ -33,7 +34,10 @@ function validateFeed(data) {
 function readStore(data) {
   const result=defaults();if(!data || typeof data!=='object')return result;
   for(const key of ['url','lastRead','lastVisit','lastError']) if(typeof data[key]==='string')result[key]=data[key].slice(0,800);
-  if(!result.url) result.url=defaultURL;
+  // Migrate older public PWA installations that accidentally used a private Watch
+  // or local-file URL; preserve explicit custom HTTPS feeds.
+  if(!result.url || (!extension && !localFile && (result.url.startsWith(HOSTED) || result.url.startsWith('file:'))))
+    result.url=defaultURL;
   for(const key of ['seen','saved']) if(Array.isArray(data[key]))result[key]=data[key].filter(v=>typeof v==='string').slice(-2000);
   if(data.answers && typeof data.answers==='object')result.answers=Object.fromEntries(Object.entries(data.answers).filter(([k,v])=>k.length<=140 && Number.isInteger(v)&&v>=0&&v<=2).slice(-1000));
   if(data.cached)try{result.cached=validateFeed(data.cached);}catch{}
@@ -72,6 +76,7 @@ function passes(e,d) {
   const view=$('watchFilter')?.value||'all';
   const query=($('watchSearch')?.value||'').trim().toLowerCase();
   if(query && ![e.title,e.topic,e.source_name,e.summary].join(' ').toLowerCase().includes(query))return false;
+  if(['regulator','industry_body','editorial','social'].includes(view))return e.source_class===view;
   if(view==='last')return !isReference(d) && !!baseline && changedAt(e)>baseline;
   if(view==='unread')return !watch.seen.includes(keyFor(e));
   if(view==='saved')return watch.saved.includes(e.id);
@@ -201,7 +206,7 @@ function render() {
   const sources=$('watchSources');sources.replaceChildren();
   for(const s of d.sources) {
     const row=element('div','watch-source'),info=element('div','');
-    const label=s.fetch_status==='not_checked'?'Awaiting check':s.ok?'Available':'Failed';
+    const label=s.deferred?'Ponowna próba później':s.fetch_status==='not_checked'?'Nie sprawdzono':s.ok?'Odczyt OK':'Brak dostępu';
     info.append(element('strong','',s.name||s.id),element('p','micro',provenanceLabel(s)),
       element('p','micro','Last success · '+date(s.last_success)+(s.last_attempt?' | Attempt · '+date(s.last_attempt):'')));
     if(s.detail||s.error)info.append(element('p','micro',s.detail||s.error));
@@ -236,7 +241,10 @@ async function refresh(force=false) {
     }
     if(watch.cached?.generated_at && d.generated_at && Date.parse(d.generated_at)<Date.parse(watch.cached.generated_at))throw Error('Received an older snapshot');
     watch.cached=d;watch.lastRead=new Date().toISOString();watch.lastError='';
-    if(d.generated_at && Number.isFinite(Date.parse(d.generated_at)))watch.lastVisit=d.generated_at;
+    // Do not advance the last-visit baseline while merely refreshing the feed.
+    // Keep the user's unread/new labels meaningful until the next visit.
+    if(d.generated_at && Number.isFinite(Date.parse(d.generated_at)) && !watch.lastVisit)
+      watch.lastVisit=d.generated_at;
     save();
   }catch(e){if(serial===requestSerial){failure='Feed refresh failed. '+(e.name==='AbortError'?'Connection timed out.':String(e.message||e))+'. Showing the last available reading collection.';watch.lastError=failure;save();}}
   finally{clearTimeout(timeout);if(serial===requestSerial){pending=false;render();}}
@@ -255,6 +263,12 @@ export function wireWatch() {
   if(!$('watchSaveUrl'))return;
   $('watchFeedUrl').value=watch.url;
   $('watchHosted').href=HOSTED+'/#watch';
+  const reset=$('watchUseGithub');
+  if(reset)reset.addEventListener('click',async()=>{
+    watch.url='./data/intelligence.json';watch.cached=null;watch.lastVisit='';watch.lastRead='';
+    watch.lastError='';baseline='';save();$('watchFeedUrl').value=watch.url;
+    lastAttempt=Date.now();await refresh(true);
+  });
   $('watchSaveUrl').addEventListener('click',async()=>{
     const value=$('watchFeedUrl').value.trim()||defaultURL;
     try {
