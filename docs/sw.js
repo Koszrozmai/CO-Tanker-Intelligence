@@ -1,23 +1,22 @@
-const PREFIX='co-tanker-intelligence-';
-const CACHE=PREFIX+'v1.8.1';
+/* CO Tanker Intelligence v1.8 offline-first app shell */
+const CACHE='co-tanker-intelligence-v1.8.1';
 const ROOT=new URL('./',self.registration.scope);
-const ASSETS=['./','./index.html','./manifest.webmanifest','./icons/icon192.png','./icons/icon512.png'];
-const paths=new Set(ASSETS.map(p=>new URL(p,ROOT).pathname));
+const PATHS=['./','./index.html','./manifest.webmanifest','./icons/icon192.png','./icons/icon512.png'];
+const SET=new Set(PATHS.map(p=>new URL(p,ROOT).pathname));
 self.addEventListener('install',event=>event.waitUntil((async()=>{
  const cache=await caches.open(CACHE);
- await cache.addAll(ASSETS.map(p=>new Request(new URL(p,ROOT),{cache:'reload',redirect:'error'})));
+ await cache.addAll(PATHS.map(p=>new Request(new URL(p,ROOT),{cache:'reload',credentials:'same-origin'})));
  await self.skipWaiting();
 })()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
- for(const name of await caches.keys())if(name.startsWith(PREFIX)&&name!==CACHE)await caches.delete(name);
+ for(const key of await caches.keys())if(key.startsWith('co-tanker-intelligence-')&&key!==CACHE)await caches.delete(key);
  await self.clients.claim();
 })()));
 self.addEventListener('fetch',event=>{
- if(event.request.method!=='GET')return;
  const url=new URL(event.request.url);
- if(url.origin!==ROOT.origin||!paths.has(url.pathname))return;
+ if(event.request.method!=='GET'||url.origin!==ROOT.origin||!SET.has(url.pathname))return;
  event.respondWith((async()=>{
-  const cache=await caches.open(CACHE),key=new URL(url.pathname,ROOT);
-  return await cache.match(key)||fetch(event.request);
+  const cache=await caches.open(CACHE);
+  return await cache.match(event.request,{ignoreSearch:true})||fetch(event.request);
  })());
 });
