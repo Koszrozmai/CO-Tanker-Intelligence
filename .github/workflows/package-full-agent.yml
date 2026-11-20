@@ -1,0 +1,41 @@
+name: Download full CO Tanker Intelligence agent ZIP
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/package-full-agent.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout latest full source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Archive complete tracked repository (source, PWA, tests, prompts)
+        run: |
+          mkdir -p dist
+          git archive --format=zip --prefix=CO_Tanker_Intelligence/ --output=dist/CO_Tanker_Intelligence_FULL.zip HEAD
+          python - <<'PY'
+          from zipfile import ZipFile
+          with ZipFile('dist/CO_Tanker_Intelligence_FULL.zip') as z:
+              names=z.namelist()
+              needed=['agent/collector.py','agent/sources.json','agent/source_discovery.py',
+                      'docs/index.html','docs/always_on_ui.js','docs/sw.js',
+                      'MASTER_PROMPT_CO_v2.5_SOURCE_HEALTH.md','.github/workflows/collect.yml']
+              for n in needed:
+                  assert 'CO_Tanker_Intelligence/'+n in names, 'Missing '+n
+              assert len(names)>30, f'Incomplete snapshot: {len(names)} files'
+              print(f'FULL repository ZIP verified: {len(names)} tracked files')
+          PY
+      - name: Publish full source ZIP as downloadable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CO-Tanker-Intelligence-FULL
+          path: dist/CO_Tanker_Intelligence_FULL.zip
+          retention-days: 90
+          if-no-files-found: error
