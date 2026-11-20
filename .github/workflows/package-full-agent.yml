@@ -39,3 +39,10 @@ jobs:
           path: dist/CO_Tanker_Intelligence_FULL.zip
           retention-days: 90
           if-no-files-found: error
+      - name: Publish master prompt Markdown
+        uses: actions/upload-artifact@v4
+        with:
+          name: CO-Tanker-Master-Prompt-v2.5-MD
+          path: MASTER_PROMPT_CO_v2.5_SOURCE_HEALTH.md
+          retention-days: 90
+          if-no-files-found: error
