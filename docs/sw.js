@@ -1,5 +1,5 @@
 /* CO Tanker Intelligence v1.9.0 - offline-first, update-aware app shell */
-const CACHE='co-tanker-intelligence-seaglass-20261119-3';
+const CACHE='co-tanker-intelligence-seaglass-20261127-1';
 const ROOT=new URL('./',self.registration.scope);
 const PATHS=['./','./index.html','./manifest.webmanifest','./styles.css','./sea_glass.js','./icons/icon128.png','./icons/icon192.png','./icons/icon512.png','./sire_training.js','./sire_p1a.js','./sire_p1b.js','./sire_p1c.js','./sire_p1d.js','./sire_p1e.js','./sire_p2a.js','./sire_p2b.js','./sire_p2c.js','./sire_p2d.js'];
 const SET=new Set(PATHS.map(p=>new URL(p,ROOT).pathname));

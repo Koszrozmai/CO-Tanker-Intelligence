@@ -1,14 +1,14 @@
-# CO Tanker Intelligence v1.8
+# CO Tanker Intelligence 2.9
 
-**Aplikacja:** https://koszrozmai.github.io/CO-Tanker-Intelligence/
+Otwórz [pulpit CO](https://koszrozmai.github.io/CO-Tanker-Intelligence/). Na ekranie startowym wybierz aktualności, szkolenia techniczne lub trening SIRE 2.0. W aktualnościach można szukać według wydawcy i tematu oraz filtrować publikacje oficjalne, branżowe, przeczytane i zapisane.
 
-Wersja dla Chrome (Windows) i Samsung Android PWA. Otwórz link w Chrome, a na Samsungu wybierz menu przeglądarki → **Dodaj do ekranu głównego** / **Zainstaluj aplikację**. Po pierwszym otwarciu online aplikacja przechowuje powłokę do pracy offline.
+Na Samsungu otwórz program w Chrome i użyj polecenia **Zainstaluj aplikację** w menu przeglądarki. Samodzielny plik **Otworz_CO_Tanker_Offline.html** z pełnej paczki zawiera również przegląd publikacji ze wskazaną datą ostatniego pobrania. Link do artykułu u wydawcy wymaga internetu.
 
 ## Monitoring informacji
 Workflow `.github/workflows/collect.yml` jest uruchamiany przy zmianach, ręcznie oraz według harmonogramu co trzy godziny (UTC). Publikuje `docs/data/intelligence.json`. **Wyniki kolektora to wykryte odsyłacze, a nie zatwierdzone interpretacje przepisów**. Sprawdzaj oryginalne źródło oraz datę obowiązywania. Harmonogram GitHub Actions nie jest gwarancją wykonania o określonej godzinie. Zmiany krytyczne wymagają zatwierdzenia przez oficera i zgodności z SMS, banderą, instrukcją producenta i dokumentacją statku.
 
 ## Aktualizacje i kopie danych
-Dane prywatne, notatki i postęp przechowywane lokalnie w przeglądarce **nie synchronizują się między telefonem a komputerem**. W aplikacji wykonaj eksport kopii zapasowej i import na drugim urządzeniu. Nie publikuj dokumentów statkowych ani danych załogi w publicznym repozytorium. Kod źródłowy i pełen pakiet ZIP v1.8 pozostały do odrębnego przeniesienia; strona jest uruchamiana z samodzielnego pliku HTML v1.8.
+Dane prywatne, notatki i postęp przechowywane lokalnie w przeglądarce **nie synchronizują się między telefonem a komputerem**. W aplikacji wykonaj eksport kopii zapasowej i import na drugim urządzeniu. Nie publikuj dokumentów statkowych ani danych załogi w publicznym repozytorium.
 
 **Status:** GitHub Pages wymaga aktywnego źródła `GitHub Actions` w ustawieniach Pages. Sprawdź działanie wdrożenia w zakładce Actions.
 

@@ -1,7 +1,7 @@
 {
-  "name": "CO Tanker Intelligence \u2014 Chief Officer",
+  "name": "CO Tanker Intelligence — Chief Officer",
   "short_name": "CO Intelligence",
-  "description": "Offline-first tanker regulatory watch, inspections, port planning and professional training",
+  "description": "Przegląd źródeł morskich, szkolenia techniczne, inspekcje i trening SIRE dla Chief Officera",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -20,5 +20,6 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "lang": "pl"
 }

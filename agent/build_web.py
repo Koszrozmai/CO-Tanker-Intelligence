@@ -55,10 +55,10 @@ def prepare(html):
        'id="watchSaveUrl">Połącz</button><button class="button-outline small" id="watchUseGithub">Przywróć aktualności GitHub</button>', 1)
     html = html.replace('Source health and last successful checks', 'Dostępność źródeł i ostatnie poprawne odczyty')
     html = html.replace('Source, topic or title', 'Wydawca, temat lub tytuł')
-    html = re.sub(r'<div class="hero">.*?</div></div>', '', html, count=1, flags=re.S)
-    actions = ('<div class="sea-actions"><a class="button-primary" href="#practice">Trening SIRE 2.0</a>'
-               '<button class="button-outline" data-action="open-feed">Archiwum informacji</button>'
-               '<button class="button-outline" data-action="open-learning">Baza wiedzy</button></div>')
+    html = re.sub(r'<div class="hero">.*?(?=<div class="metrics">)', '', html, count=1, flags=re.S)
+    actions = ('<div class="sea-actions"><a class="button-primary" href="#watch">Aktualności i źródła</a>'
+               '<a class="button-outline" href="#technical">Technika i szkolenia</a>'
+               '<a class="button-outline" href="#practice">Trening SIRE 2.0</a></div>')
     marker = '<div class="glass-card watch-overview">'
     if marker not in html:
         raise ValueError('Missing briefing entry point')

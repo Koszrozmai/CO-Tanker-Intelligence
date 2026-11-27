@@ -46,8 +46,8 @@ function readStore(data) {
 let watch=defaults();
 try {watch=readStore(JSON.parse(localStorage.getItem(STORE)||'null'));}catch{}
 let baseline=watch.lastVisit,requestSerial=0,pending=false,failure='',storageError=false,limit=20;
-const dateFormat=new Intl.DateTimeFormat('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'UTC'});
-const date=value=>value && Number.isFinite(Date.parse(value))?dateFormat.format(new Date(value))+' UTC':'No successful check recorded';
+const dateFormat=new Intl.DateTimeFormat('pl-PL',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'UTC'});
+const date=value=>value && Number.isFinite(Date.parse(value))?dateFormat.format(new Date(value))+' UTC':'brak potwierdzonego odczytu';
 const keyFor=e=>e.id+(e.revision>1?'@'+e.revision:'');
 const changedAt=e=>e.changed_at||e.updated_at||e.discovered_at||'';
 function save() {
@@ -66,16 +66,19 @@ function feedData() {
 }
 function isReference(d) {return ['REFERENCE_SNAPSHOT','NOT_DEPLOYED'].includes(d.collector_status)||!d.generated_at;}
 function statusLine(d) {
-  if(isReference(d)) return d.collector_status==='NOT_DEPLOYED'?'Collector awaiting first run':'Offline reference edition · originals checked '+(d.reference_checked||'on release');
+  if(isReference(d)) return d.collector_status==='NOT_DEPLOYED'?'Oczekiwanie na pierwszy przegląd':'Wydanie referencyjne · sprawdzenie źródeł: '+(d.reference_checked||'w dniu wydania');
   const age=(Date.now()-Date.parse(d.generated_at))/3600000;
-  if(!Number.isFinite(age)||age < -0.1)return 'Collector time unavailable or inconsistent';
-  const state=({ALL_SOURCES_FAILED:'Last run failed across all attempted sources',PARTIAL:'Last run had source access failures',RUN_COMPLETED:'Last run completed'})[d.collector_status]||'Collector state unknown';
-  return (age>12?'Stale feed · ':'')+state+' · '+date(d.generated_at);
+  if(!Number.isFinite(age)||age < -0.1)return 'Czas przeglądu niepotwierdzony';
+  const state=({ALL_SOURCES_FAILED:'Nie udało się odczytać żadnego sprawdzanego źródła',PARTIAL:'Część źródeł była niedostępna',RUN_COMPLETED:'Zakończono przegląd źródeł'})[d.collector_status]||'Stan przeglądu nieznany';
+  return (age>12?'Starszy odczyt · ':'')+state+' · '+date(d.generated_at);
+}
+function searchText(value) {
+  return String(value || '').toLocaleLowerCase('pl').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ł/g,'l');
 }
 function passes(e,d) {
   const view=$('watchFilter')?.value||'all';
-  const query=($('watchSearch')?.value||'').trim().toLowerCase();
-  if(query && ![e.title,e.topic,e.source_name,e.summary].join(' ').toLowerCase().includes(query))return false;
+  const query=searchText($('watchSearch')?.value).trim();
+  if(query && !searchText([e.title,e.topic,e.source_name,e.summary,e.source_label].join(' ')).includes(query))return false;
   if(['regulator','industry_body','editorial','social'].includes(view))return e.source_class===view;
   if(view==='last')return !isReference(d) && !!baseline && changedAt(e)>baseline;
   if(view==='unread')return !watch.seen.includes(keyFor(e));
@@ -105,11 +108,11 @@ function article(e) {
   card.append(head,title,element('p','micro',e.status_label||'Listing only · original pending'));
   if(e.summary)card.append(element('p','watch-summary',e.summary));
   const dates=[];
-  if(e.published)dates.push('Published '+e.published);
-  if(e.updated_at_source)dates.push('Publisher updated '+e.updated_at_source);
+  if(e.published)dates.push('Opublikowano '+e.published);
+  if(e.updated_at_source)dates.push('Aktualizacja wydawcy '+e.updated_at_source);
   if(e.event_start)dates.push('Event '+e.event_start+(e.event_end?' – '+e.event_end:''));
-  if(e.verified_at)dates.push('Original checked '+e.verified_at.slice(0,10));
-  if(e.legal_status)dates.push('Classification · '+e.legal_status);
+  if(e.verified_at)dates.push('Sprawdzono oryginał '+e.verified_at.slice(0,10));
+  if(e.legal_status)dates.push('Klasyfikacja · '+e.legal_status);
   if(dates.length)card.append(element('p','micro',dates.join(' · ')));
   if(e.history?.length) {
     const detail=element('details','watch-history');detail.append(element('summary','', 'Revision '+e.revision+' · View earlier versions'));
@@ -131,8 +134,8 @@ function article(e) {
     });
   }
   const read=watch.seen.includes(keyFor(e)),saved=watch.saved.includes(e.id);
-  const readBtn=button(read?'Reviewed':'Mark reviewed',()=>{changeSet('seen',keyFor(e));save();render();});
-  const saveBtn=button(saved?'Saved':'Save',()=>{changeSet('saved',e.id);save();render();});
+  const readBtn=button(read?'Przeczytane':'Oznacz jako przeczytane',()=>{changeSet('seen',keyFor(e));save();render();});
+  const saveBtn=button(saved?'Zapisano':'Zapisz',()=>{changeSet('saved',e.id);save();render();});
   readBtn.setAttribute('aria-pressed',String(read));saveBtn.setAttribute('aria-pressed',String(saved));
   actions.append(sourceLink,readBtn,saveBtn);card.append(actions);return card;
 }
@@ -148,14 +151,14 @@ function lesson(l) {
     if(selected!==undefined)result.textContent=(selected===q.answer?'Correct. ':'Review the original. ')+q.explanation;
     card.append(choices,result);
   } else for(const q of (l.questions||[]).slice(0,4))card.append(element('p','micro',q));
-  card.append(link(l.source_url,'Read the original'));return card;
+  card.append(link(l.source_url,'Otwórz źródło'));return card;
 }
 let lessonLimit=6;
 function renderLessons() {
   const root=$('watchLessons');root.replaceChildren();const list=feedData().lessons;
   for(const l of list.slice(0,lessonLimit))root.append(lesson(l));
-  if(!list.length)root.append(element('p','subtle','No new guided study is available. The CO Academy remains available offline.'));
-  if(list.length>lessonLimit)root.append(button('Show more study cards',()=>{lessonLimit+=12;renderLessons();}));
+  if(!list.length)root.append(element('p','subtle','Brak nowych kart nauki. Akademia CO jest dostępna offline.'));
+  if(list.length>lessonLimit)root.append(button('Show more kart nauki',()=>{lessonLimit+=12;renderLessons();}));
 }
 
 function renderBriefPreview(d) {
@@ -189,19 +192,24 @@ function renderBriefPreview(d) {
 function render() {
   if(!$('watchStatus'))return;
   const d=feedData(),headline=statusLine(d);
-  const status=$('watchStatus');status.textContent=(pending?'Checking feed… · ':'')+headline;
+  const status=$('watchStatus');status.textContent=(pending?'Pobieranie… · ':'')+headline;
   $('watchError').textContent=failure || watch.lastError || '';
-  $('watchStorage').textContent=storageError?'Device storage is unavailable or full. Export a backup before leaving.':'';
+  $('watchStorage').textContent=storageError?'Pamięć urządzenia jest niedostępna lub pełna. Wyeksportuj kopię przed zamknięciem.':'';
   const unread=d.entries.filter(e=>!watch.seen.includes(keyFor(e))).length;
   const recent=(!isReference(d)&&baseline)?d.entries.filter(e=>changedAt(e)>baseline).length:null;
-  const short=$('watchOverview');if(short)short.textContent=headline+' · '+(recent===null?unread+' unread':recent+' new or revised since your previous visit');
+  const refreshButton=$('watchRefresh');
+  if(refreshButton){refreshButton.disabled=pending||!watch.url;refreshButton.textContent=pending?'Pobieranie…':'Odśwież aktualności';}
+  const short=$('watchOverview');if(short)short.textContent=headline+' · '+(recent===null?unread+' nieprzeczytanych':recent+' nowych lub zmienionych od poprzedniej wizyty');
   renderBriefPreview(d);
-  $('watchCounts').textContent=(isReference(d)?'Reference collection':recent===null?'First visit on this device':recent+' new or revised since your last visit')+' · '+unread+' unread · '+d.lessons.length+' study cards';
+  $('watchCounts').textContent=(isReference(d)?'Zbiór referencyjny':recent===null?'Pierwsza wizyta na urządzeniu':recent+' nowych lub zmienionych od poprzedniej wizyty')+' · '+unread+' nieprzeczytanych · '+d.lessons.length+' kart nauki';
   const briefing=d.briefing;
-  $('watchBrief').textContent=briefing?'Daily briefing · '+briefing.day+' UTC · '+briefing.added+' discovered · '+briefing.amended+' revised · '+briefing.checks+' recorded runs':'';
+  $('watchBrief').textContent=briefing?'Przegląd dnia · '+briefing.day+' UTC · '+briefing.added+' nowych · '+briefing.amended+' zmienionych · '+briefing.checks+' przeglądów':'';
   const root=$('watchEntries');root.replaceChildren();const rows=d.entries.filter(e=>passes(e,d));
+  const matches=$('watchMatches'),clear=$('watchClear');
+  if(matches)matches.textContent='Wyświetlono '+Math.min(rows.length,limit)+' z '+rows.length+' pasujących publikacji';
+  if(clear)clear.hidden=($('watchFilter').value==='all'&&!$('watchSearch').value);
   for(const e of rows.slice(0,limit))root.append(article(e));
-  if(!rows.length)root.append(element('p','subtle',$('watchFilter').value==='last'&&!baseline?'Your next visit will show changes since this visit.':'No publications match this view.'));
+  if(!rows.length)root.append(element('p','subtle',$('watchFilter').value==='last'&&!baseline?'Po następnym otwarciu zobaczysz zmiany od tej wizyty.':'Brak pasujących publikacji.'));
   $('watchMore').hidden=rows.length<=limit;$('watchMarkAll').disabled=!rows.length;
   const sources=$('watchSources');sources.replaceChildren();
   for(const s of d.sources) {
@@ -240,16 +248,16 @@ async function refresh(force=false) {
     if(serial!==requestSerial)return;
     // A release placeholder or a failed source run may still contain useful older records.
     if(d.collector_status==='NOT_DEPLOYED'&&!d.entries.length) {
-      watch.lastError='This feed has no collector run yet. Showing the last available reading collection.';save();return;
+      watch.lastError='This feed has no collector run yet. Wyświetlam ostatni dostępny zbiór.';save();return;
     }
-    if(watch.cached?.generated_at && d.generated_at && Date.parse(d.generated_at)<Date.parse(watch.cached.generated_at))throw Error('Received an older snapshot');
+    if(watch.cached?.generated_at && d.generated_at && Date.parse(d.generated_at)<Date.parse(watch.cached.generated_at))throw Error('Źródło zwróciło starszy zbiór');
     watch.cached=d;watch.lastRead=new Date().toISOString();watch.lastError='';
     // Do not advance the last-visit baseline while merely refreshing the feed.
     // Keep the user's unread/new labels meaningful until the next visit.
-    if(d.generated_at && Number.isFinite(Date.parse(d.generated_at)) && !watch.lastVisit)
+    if(d.generated_at && Number.isFinite(Date.parse(d.generated_at)))
       watch.lastVisit=d.generated_at;
     save();
-  }catch(e){if(serial===requestSerial){failure='Feed refresh failed. '+(e.name==='AbortError'?'Connection timed out.':String(e.message||e))+'. Showing the last available reading collection.';watch.lastError=failure;save();}}
+  }catch(e){if(serial===requestSerial){failure='Nie udało się pobrać aktualności. '+(e.name==='AbortError'?'Przekroczono czas oczekiwania.':String(e.message||e))+'. Wyświetlam ostatni dostępny zbiór.';watch.lastError=failure;save();}}
   finally{clearTimeout(timeout);if(serial===requestSerial){pending=false;render();}}
 }
 export function exportWatchBackup() {return {...watch};}
@@ -267,6 +275,7 @@ export function wireWatch() {
   $('watchFeedUrl').value=watch.url;
   $('watchHosted').href=HOSTED+'/#watch';
   const reset=$('watchUseGithub');
+  if(reset){reset.hidden=localFile||extension;reset.textContent='Przywróć domyślne źródło';}
   if(reset)reset.addEventListener('click',async()=>{
     watch.url='./data/intelligence.json';watch.cached=null;watch.lastVisit='';watch.lastRead='';
     watch.lastError='';baseline='';save();$('watchFeedUrl').value=watch.url;
@@ -284,6 +293,9 @@ export function wireWatch() {
       if(watch.url!==value){watch.cached=null;watch.lastVisit='';watch.lastRead='';watch.lastError='';baseline='';}
       watch.url=value;save();lastAttempt=Date.now();await refresh(true);
     }catch(e){failure=e.message;render();}
+  });
+  $('watchClear')?.addEventListener('click',()=>{
+    $('watchFilter').value='all';$('watchSearch').value='';limit=20;render();$('watchSearch').focus();
   });
   $('watchRefresh').addEventListener('click',()=>{lastAttempt=Date.now();refresh(true);});
   $('watchMarkAll').addEventListener('click',()=>{

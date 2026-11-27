@@ -414,3 +414,20 @@ body {background:#f3f7f5; color:var(--ink); font:1rem/1.55 system-ui,sans-serif}
 #page-overview .briefing-preview-item {padding:1rem 1.15rem}
 #page-overview .briefing-preview-headline {font-size:1.08rem}
 @media(max-width:600px){.sire-detail {scroll-margin-top:6rem}.sea-actions {gap:.45rem}.sea-actions a,.sea-actions button {font-size:.9rem}}
+
+.watch-result-bar {display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; justify-content:space-between; margin:.75rem 0; font-size:.94rem}
+.watch-result-bar [hidden] {display:none!important}
+
+/* Accessible reading surfaces inside the light dashboard. */
+.topbar h1,.sidebar .brand strong,.main .glass-card h2,.main .glass-card h3,.section-heading h2,.main .metric strong,.launch-card b,.briefing-preview-headline a {color:#123e42}
+.sidebar .nav-item,.sidebar .nav-more summary,.sidebar .brand small,.topbar .eyebrow,.topbar #lastSync,.main .glass-card p,.main .metric small,.launch-card small {color:#365955}
+.sea-actions a {text-decoration:none;font-weight:680;border-radius:.65rem}
+.sea-actions .button-outline,.topbar .button-outline {background:white;color:#154d47;border:1px solid #9dbbb2}
+.watch-card {background:#fff;color:#193d3a;border:1px solid #c3d8d2}
+.watch-card h3 a,.watch-card .reference-short,.watch-source .reference-short {color:#096458}
+.watch-card .watch-summary,.watch-card .micro,.watch-card .watch-question {color:#355651}
+.watch-card .watch-chip {background:#e4f1eb;color:#264d45;border-color:#b3cfc3}
+.watch-card .button-outline,.watch-result-bar .button-outline {color:#15584c;background:#f4faf7;border:1px solid #a3c3b8}
+.watch-card .button-outline[aria-pressed="true"] {background:#d5eadf;border-color:#448772}
+.watch-tools input,.watch-tools select {min-height:44px;font-size:1rem}
+@media(max-width:600px){.sea-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.sea-actions a{justify-content:center;text-align:center}.sea-actions a:first-child{grid-column:1/-1}.main-content{min-width:0}.watch-card,.watch-source {overflow-wrap:anywhere}}
