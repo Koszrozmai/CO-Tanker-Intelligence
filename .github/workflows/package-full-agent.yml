@@ -4,6 +4,10 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/package-full-agent.yml'
+      - 'docs/index.html'
+      - 'docs/styles.css'
+      - 'docs/*.js'
+      - 'agent/build_*.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -20,11 +24,14 @@ jobs:
         run: |
           mkdir -p dist
           git archive --format=zip --prefix=CO_Tanker_Intelligence/ --output=dist/CO_Tanker_Intelligence_FULL.zip HEAD
+          mkdir -p dist/CO_Tanker_Intelligence
+          python agent/build_offline.py dist/CO_Tanker_Intelligence/Otworz_CO_Tanker_Offline.html
+          (cd dist && zip -q CO_Tanker_Intelligence_FULL.zip CO_Tanker_Intelligence/Otworz_CO_Tanker_Offline.html)
           python - <<'PY'
           from zipfile import ZipFile
           with ZipFile('dist/CO_Tanker_Intelligence_FULL.zip') as z:
               names=z.namelist()
-              needed=['agent/collector.py','agent/sources.json','agent/source_discovery.py',
+              needed=['Otworz_CO_Tanker_Offline.html','agent/collector.py','agent/sources.json','agent/source_discovery.py',
                       'docs/index.html','docs/always_on_ui.js','docs/sw.js',
                       'MASTER_PROMPT_CO_v2.5_SOURCE_HEALTH.md','.github/workflows/collect.yml']
               for n in needed:

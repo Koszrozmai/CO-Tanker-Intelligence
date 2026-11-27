@@ -7,6 +7,16 @@ function asset(path,req) {
   const body=req.method==='HEAD'?null:a.binary?Uint8Array.from(atob(a.data),ch=>ch.charCodeAt(0)):a.data;
   return new Response(body,{headers:{...baseHeaders,'content-type':a.type,'cache-control':'private, no-cache','service-worker-allowed':'/'}});
 }
+// Older private snapshots predate publisher categories. Classify them when read.
+function withPublishers(feed) {
+  const registry = new Map(REGISTRY.map(source => [source.id, source]));
+  function classify(row, id) {
+    const source = registry.get(id);
+    return source?.source_class && !row.source_class ? {...row, source_class:source.source_class} : row;
+  }
+  return {...feed, entries:feed.entries.map(row => classify(row,row.source_id)),
+    sources:feed.sources.map(row => classify(row,row.id))};
+}
 const form={
   run_id:'unique stable ASCII ID, letters/digits/underscores/hyphens, 8 to 80 characters',
   checks:[{source_id:'registry ID',status:'ok or unavailable',detail:'brief factual account of actual access, up to 260 characters'}],
@@ -18,7 +28,7 @@ export default {async fetch(req,env) {
   if(pathname==='/data/intelligence.json' && req.method==='GET') {
     if(!env.BUCKET)return json({error:'Persistent source storage unavailable'},503);
     const o=await env.BUCKET.get(STATE_KEY);
-    return o?new Response(o.body,{headers:{...baseHeaders,'content-type':'application/json; charset=utf-8','cache-control':'private, no-store'}}):json(REFERENCE);
+    return json(withPublishers(o ? await o.json() : REFERENCE));
   }
   if(pathname==='/api/watch/runs' && req.method==='POST'){
     if(!env.BUCKET)return json({error:'Persistent source storage unavailable'},503);

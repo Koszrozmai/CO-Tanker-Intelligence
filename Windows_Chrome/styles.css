@@ -360,3 +360,6 @@ body {background:#f3f7f5; color:var(--ink); font:1rem/1.55 system-ui,sans-serif}
 #page-overview .briefing-preview-headline {font-size:1.08rem}
 @media(max-width:600px){.sire-detail {scroll-margin-top:6rem}.sea-actions {gap:.45rem}.sea-actions a,.sea-actions button {font-size:.9rem}}
 .sidebar div.brand-icon {background:transparent url('icons/icon128.png') center/contain no-repeat;color:transparent;font-size:0}
+
+.watch-result-bar {display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; justify-content:space-between; margin:.75rem 0; font-size:.94rem}
+.watch-result-bar [hidden] {display:none!important}

@@ -2,6 +2,7 @@
 from build_web import prepare
 import argparse
 import base64
+import json
 import re
 from pathlib import Path
 
@@ -20,6 +21,15 @@ def build(dest):
     html = re.sub(r'(?P<attribute>href|src)="(?:\./)?(?P<path>icons/icon\d+\.png)"', embedded_icon, html)
     html = html.replace('<link rel="stylesheet" href="styles.css">',
                         '<style>' + (APP / 'styles.css').read_text() + '</style>')
+    # The file is also usable on its first opening at sea, without a fetch.
+    feed = json.loads((APP / 'data/intelligence.json').read_text(encoding='utf-8'))
+    if feed.get('schema_version') != 1 or not isinstance(feed.get('entries'), list):
+        raise ValueError('Invalid release feed')
+    payload = json.dumps(feed, ensure_ascii=False, separators=(',', ':')).replace('<', r'\u003c')
+    html, count = re.subn(r'^const RELEASE_REFERENCE = .*?;$',
+                          lambda _: 'const RELEASE_REFERENCE = ' + payload + ';', html, flags=re.M)
+    if count != 1:
+        raise ValueError('Missing bundled reading edition')
     parts = []
     for name in ['p1a','p1b','p1c','p1d','p1e','p2a','p2b','p2c','p2d']:
         module = (APP / f'sire_{name}.js').read_text()
